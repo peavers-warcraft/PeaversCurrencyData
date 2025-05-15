@@ -9,7 +9,7 @@ PeaversCurrencyData.wowToken = {
     goldPrice = 245750,  -- Gold cost of a token
     realPrice = 20,      -- USD cost of a token
     currency = "USD",
-    goldValue = 0.0000813836, -- USD value of 1 gold
+    goldValue = 0.0000813835, -- USD value of 1 gold
   },
   EU = {
     goldPrice = 313420,  -- Gold cost of a token
@@ -19,15 +19,15 @@ PeaversCurrencyData.wowToken = {
   },
   KR = {
     goldPrice = 176420,  -- Gold cost of a token
-    realPrice = 22000,   -- KRW cost of a token
+    realPrice = 22000,      -- KRW cost of a token
     currency = "KRW",
-    goldValue = 0.1246456526, -- KRW value of 1 gold
+    goldValue = 0.1247024147, -- KRW value of 1 gold
   },
   TW = {
     goldPrice = 184260,  -- Gold cost of a token
-    realPrice = 500,     -- TWD cost of a token
+    realPrice = 500,      -- TWD cost of a token
     currency = "TWD",
-    goldValue = 0.0027135352, -- TWD value of 1 gold
+    goldValue = 0.0027135569, -- TWD value of 1 gold
   },
 }
 
@@ -38,7 +38,7 @@ function PeaversCurrencyData:GetGoldValue(region, currency)
   if not tokenData then return nil end
 
   currency = currency or tokenData.currency
-
+  
   -- If the requested currency is the same as the region's currency, return the gold value
   if currency == tokenData.currency then
     return tokenData.goldValue

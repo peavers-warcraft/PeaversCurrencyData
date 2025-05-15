@@ -1,13 +1,13 @@
-name: Update Currency Exchange Rates
+name: Update WoW Token Prices
 
 on:
   schedule:
-    # Run daily at 00:00 UTC
-    - cron: '0 0 * * *'
+    # Run daily at 02:00 UTC (separate time from currency update)
+    - cron: '0 2 * * *'
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
-  update-currency-data:
+  update-token-data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -20,13 +20,13 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Fetch currency data
+      - name: Fetch token data
         run: |
           # Make sure scripts directory exists
           mkdir -p scripts
           
           # Run the update script
-          node scripts/update-currency.js
+          node scripts/update-token.js
 
       - name: Commit and push changes
         env:
@@ -37,15 +37,15 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # Check if there are changes to commit
-          if [[ -n $(git status --porcelain src/Data.lua) ]]; then
+          if [[ -n $(git status --porcelain src/TokenData.lua) ]]; then
             # Commit and push changes
-            git add src/Data.lua
-            git commit -m "Update currency exchange rates - $(date +'%Y-%m-%d')"
+            git add src/TokenData.lua
+            git commit -m "Update WoW token prices - $(date +'%Y-%m-%d')"
 
             # Push changes using the personal GitHub token
             git remote set-url origin https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
             git push
-            echo "Currency data updated and pushed to repository."
+            echo "Token data updated and pushed to repository."
           else
-            echo "No changes to currency data."
+            echo "No changes to token data."
           fi

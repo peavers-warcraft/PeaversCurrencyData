@@ -1,0 +1,11 @@
+## Interface: 100200
+## Title: Peavers Currency Data
+## Notes: Provides real-world currency exchange rates for other addons
+## Author: Peavers
+## Version: 1.0
+## SavedVariables: PeaversCurrencyDataDB
+
+# Core files
+src/Data.lua
+src/Core.lua
+src/Api.lua

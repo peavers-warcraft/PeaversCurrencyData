@@ -1,0 +1,164 @@
+name: Update Currency Data
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-currency-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Fetch currency data
+        run: |
+          # Create scripts dir if it doesn't exist
+          mkdir -p scripts
+          
+          # Create the update script
+          cat > scripts/update-currency.js << 'EOF'
+          const https = require('https');
+          const fs = require('fs');
+          const path = require('path');
+          
+          const dataPath = path.join('PeaversCurrencyData', 'data.lua');
+          const apiUrl = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
+          
+          // Get current date in YYYY-MM-DD format
+          const today = new Date();
+          const dateString = today.toISOString().split('T')[0];
+          
+          // Fetch the currency data
+          https.get(apiUrl, (res) => {
+            let data = '';
+          
+            res.on('data', (chunk) => {
+              data += chunk;
+            });
+          
+            res.on('end', () => {
+              try {
+                const currencyData = JSON.parse(data);
+          
+                // Start building Lua table
+                let luaTable = `-- Auto-generated currency data file\n`;
+                luaTable += `-- Last updated: ${dateString}\n\n`;
+                luaTable += `PeaversCurrencyData = PeaversCurrencyData or {}\n`;
+                luaTable += `PeaversCurrencyData.lastUpdated = "${dateString}"\n\n`;
+                luaTable += `-- Currency rates with USD as base\n`;
+                luaTable += `PeaversCurrencyData.rates = {\n`;
+          
+                // Add USD as base currency first
+                luaTable += `  USD = {\n`;
+          
+                // Include only major currencies and a few useful ones
+                const majorCurrencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD', 'CHF', 'CNY', 'HKD', 'NZD', 'KRW'];
+          
+                // Add USD rates
+                for (const currency in currencyData.usd) {
+                  const currencyCode = currency.toUpperCase();
+                  if (majorCurrencies.includes(currencyCode)) {
+                    luaTable += `    ${currencyCode} = ${currencyData.usd[currency]},\n`;
+                  }
+                }
+                luaTable += `  },\n`;
+          
+                // Fetch and add other base currencies
+                const promises = majorCurrencies.slice(1).map(currency => {
+                  return new Promise((resolve, reject) => {
+                    const currencyApiUrl = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${currency.toLowerCase()}.json`;
+          
+                    https.get(currencyApiUrl, (currencyRes) => {
+                      let currencyRateData = '';
+          
+                      currencyRes.on('data', (chunk) => {
+                        currencyRateData += chunk;
+                      });
+          
+                      currencyRes.on('end', () => {
+                        try {
+                          const currencyRates = JSON.parse(currencyRateData);
+                          const baseCurrency = currency.toUpperCase();
+          
+                          let currencySection = `  ${baseCurrency} = {\n`;
+          
+                          for (const targetCurrency in currencyRates[currency.toLowerCase()]) {
+                            const targetCode = targetCurrency.toUpperCase();
+                            if (majorCurrencies.includes(targetCode)) {
+                              currencySection += `    ${targetCode} = ${currencyRates[currency.toLowerCase()][targetCurrency]},\n`;
+                            }
+                          }
+          
+                          currencySection += `  },\n`;
+                          resolve(currencySection);
+                        } catch (err) {
+                          reject(err);
+                        }
+                      });
+                    }).on('error', (err) => {
+                      reject(err);
+                    });
+                  });
+                });
+          
+                Promise.all(promises)
+                  .then(currencySections => {
+                    for (const section of currencySections) {
+                      luaTable += section;
+                    }
+          
+                    luaTable += `}\n\n`;
+                    luaTable += `-- Currency symbols\n`;
+                    luaTable += `PeaversCurrencyData.symbols = {\n`;
+                    luaTable += `  USD = "$",\n`;
+                    luaTable += `  EUR = "€",\n`;
+                    luaTable += `  GBP = "£",\n`;
+                    luaTable += `  JPY = "¥",\n`;
+                    luaTable += `  CAD = "C$",\n`;
+                    luaTable += `  AUD = "A$",\n`;
+                    luaTable += `  CHF = "Fr",\n`;
+                    luaTable += `  CNY = "¥",\n`;
+                    luaTable += `  HKD = "HK$",\n`;
+                    luaTable += `  NZD = "NZ$",\n`;
+                    luaTable += `  KRW = "₩",\n`;
+                    luaTable += `}\n`;
+          
+                    // Write data to file
+                    fs.writeFileSync(dataPath, luaTable);
+                    console.log(`Currency data updated and saved to ${dataPath}`);
+                  })
+                  .catch(err => {
+                    console.error('Error fetching other currency data:', err);
+                    process.exit(1);
+                  });
+          
+              } catch (err) {
+                console.error('Error parsing currency data:', err);
+                process.exit(1);
+              }
+            });
+          }).on('error', (err) => {
+            console.error('Error fetching currency data:', err);
+            process.exit(1);
+          });
+          EOF
+          
+          # Make the script executable
+          chmod +x scripts/update-currency.js
+          
+          # Run the script
+          node scripts/update-currency.js
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'Currency Bot'
+          git config --global user.email 'currency-bot@github.com'
+          git add PeaversCurrencyData/data.lua
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update currency data - $(date +'%Y-%m-%d')" && git push)

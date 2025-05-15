@@ -158,7 +158,7 @@ jobs:
 
       - name: Commit and push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
           # Configure Git
           git config --local user.email "github-actions[bot]@users.noreply.github.com"

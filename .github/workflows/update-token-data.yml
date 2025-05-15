@@ -20,7 +20,13 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Install dependencies
+        run: npm install axios
+
       - name: Fetch token data
+        env:
+          BLIZZARD_CLIENT_ID: ${{ secrets.BLIZZARD_CLIENT_ID }}
+          BLIZZARD_CLIENT_SECRET: ${{ secrets.BLIZZARD_CLIENT_SECRET }}
         run: |
           # Make sure scripts directory exists
           mkdir -p scripts

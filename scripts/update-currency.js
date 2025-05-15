@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Configuration
-const OUTPUT_FILE = path.join('src', 'Data.lua');
+const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'Data.lua');
 const API_URL = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
 const MAJOR_CURRENCIES = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD', 'CHF', 'CNY', 'HKD', 'NZD', 'KRW', 'TWD'];
 

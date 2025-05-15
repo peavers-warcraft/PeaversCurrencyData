@@ -1,3 +1,4 @@
+// scripts/update-currency.js
 /**
  * Script to fetch and update currency exchange rates
  * This script fetches data from the Fawaz Ahmed Currency API and formats it as a Lua file
@@ -6,8 +7,8 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 
-// Configuration
-const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'Data.lua');
+// Configuration - Updated path for the new structure
+const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'Generated', 'CurrencyRates.lua');
 const API_URL = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
 const MAJOR_CURRENCIES = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD', 'CHF', 'CNY', 'HKD', 'NZD', 'KRW', 'TWD'];
 
@@ -35,25 +36,27 @@ async function fetchCurrencyData() {
                     const currencyData = JSON.parse(data);
                     console.log('Successfully fetched USD currency data');
 
-                    // Start building Lua table
-                    let luaTable = `-- Auto-generated currency data file\n`;
+                    // Start building Lua table - CLEANER FORMAT
+                    let luaTable = `-- Auto-generated currency exchange rates\n`;
                     luaTable += `-- Last updated: ${dateString}\n\n`;
                     luaTable += `PeaversCurrencyData = PeaversCurrencyData or {}\n`;
-                    luaTable += `PeaversCurrencyData.lastUpdated = "${dateString}"\n\n`;
-                    luaTable += `-- Currency rates with USD as base\n`;
-                    luaTable += `PeaversCurrencyData.rates = {\n`;
+                    luaTable += `PeaversCurrencyData.CurrencyRates = {\n`;
+                    luaTable += `  lastUpdated = "${dateString}",\n\n`;
+
+                    // Add rates
+                    luaTable += `  rates = {\n`;
 
                     // Add USD as base currency first
-                    luaTable += `  USD = {\n`;
+                    luaTable += `    USD = {\n`;
 
                     // Add USD rates
                     for (const currency in currencyData.usd) {
                         const currencyCode = currency.toUpperCase();
                         if (MAJOR_CURRENCIES.includes(currencyCode)) {
-                            luaTable += `    ${currencyCode} = ${currencyData.usd[currency]},\n`;
+                            luaTable += `      ${currencyCode} = ${currencyData.usd[currency]},\n`;
                         }
                     }
-                    luaTable += `  },\n`;
+                    luaTable += `    },\n`;
 
                     // Fetch and add other base currencies
                     const currencySections = await fetchOtherCurrencies();
@@ -61,21 +64,23 @@ async function fetchCurrencyData() {
                         luaTable += section;
                     }
 
-                    luaTable += `}\n\n`;
-                    luaTable += `-- Currency symbols\n`;
-                    luaTable += `PeaversCurrencyData.symbols = {\n`;
-                    luaTable += `  USD = "$",\n`;
-                    luaTable += `  EUR = "€",\n`;
-                    luaTable += `  GBP = "£",\n`;
-                    luaTable += `  JPY = "¥",\n`;
-                    luaTable += `  CAD = "C$",\n`;
-                    luaTable += `  AUD = "A$",\n`;
-                    luaTable += `  CHF = "Fr",\n`;
-                    luaTable += `  CNY = "¥",\n`;
-                    luaTable += `  HKD = "HK$",\n`;
-                    luaTable += `  NZD = "NZ$",\n`;
-                    luaTable += `  KRW = "₩",\n`;
-                    luaTable += `  TWD = "NT$",\n`;
+                    luaTable += `  },\n\n`;
+
+                    // Add symbols
+                    luaTable += `  symbols = {\n`;
+                    luaTable += `    USD = "$",\n`;
+                    luaTable += `    EUR = "€",\n`;
+                    luaTable += `    GBP = "£",\n`;
+                    luaTable += `    JPY = "¥",\n`;
+                    luaTable += `    CAD = "C$",\n`;
+                    luaTable += `    AUD = "A$",\n`;
+                    luaTable += `    CHF = "Fr",\n`;
+                    luaTable += `    CNY = "¥",\n`;
+                    luaTable += `    HKD = "HK$",\n`;
+                    luaTable += `    NZD = "NZ$",\n`;
+                    luaTable += `    KRW = "₩",\n`;
+                    luaTable += `    TWD = "NT$",\n`;
+                    luaTable += `  }\n`;
                     luaTable += `}\n`;
 
                     resolve(luaTable);
@@ -114,25 +119,25 @@ async function fetchOtherCurrencies() {
                         const baseCurrency = currency.toUpperCase();
                         console.log(`Successfully fetched ${baseCurrency} currency data`);
 
-                        let currencySection = `  ${baseCurrency} = {\n`;
+                        let currencySection = `    ${baseCurrency} = {\n`;
 
                         for (const targetCurrency in currencyRates[currency.toLowerCase()]) {
                             const targetCode = targetCurrency.toUpperCase();
                             if (MAJOR_CURRENCIES.includes(targetCode)) {
-                                currencySection += `    ${targetCode} = ${currencyRates[currency.toLowerCase()][targetCurrency]},\n`;
+                                currencySection += `      ${targetCode} = ${currencyRates[currency.toLowerCase()][targetCurrency]},\n`;
                             }
                         }
 
-                        currencySection += `  },\n`;
+                        currencySection += `    },\n`;
                         resolve(currencySection);
                     } catch (err) {
                         console.warn(`Warning: Error fetching ${currency} data: ${err.message}`);
-                        resolve(`  ${currency.toUpperCase()} = {}, -- Failed to fetch\n`);
+                        resolve(`    ${currency.toUpperCase()} = {}, -- Failed to fetch\n`);
                     }
                 });
             }).on('error', (err) => {
                 console.warn(`Warning: Error fetching ${currency} data: ${err.message}`);
-                resolve(`  ${currency.toUpperCase()} = {}, -- Failed to fetch\n`);
+                resolve(`    ${currency.toUpperCase()} = {}, -- Failed to fetch\n`);
             });
         });
     });
@@ -150,6 +155,13 @@ async function fetchOtherCurrencies() {
  */
 async function main() {
     try {
+        // Ensure the output directory exists
+        const dir = path.dirname(OUTPUT_FILE);
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true });
+            console.log(`Created directory: ${dir}`);
+        }
+
         // Fetch and generate the currency data
         const luaCode = await fetchCurrencyData();
 

@@ -31,6 +31,9 @@ jobs:
           # Make sure scripts directory exists
           mkdir -p scripts
           
+          # Ensure the output directory exists
+          mkdir -p src/Generated
+          
           # Run the update script
           node scripts/update-token.js
 
@@ -43,9 +46,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # Check if there are changes to commit
-          if [[ -n $(git status --porcelain src/TokenData.lua) ]]; then
+          if [[ -n $(git status --porcelain src/Generated/TokenPrices.lua) ]]; then
             # Commit and push changes
-            git add src/TokenData.lua
+            git add src/Generated/TokenPrices.lua
             git commit -m "Update WoW token prices - $(date +'%Y-%m-%d')"
 
             # Push changes using the personal GitHub token

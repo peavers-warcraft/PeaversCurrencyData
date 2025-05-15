@@ -1,7 +1,7 @@
--- PeaversCurrencyData/src/Core.lua
+-- PeaversCurrencyData/src/Core/Init.lua
 local addonName, addon = ...
 
--- Initialize addon namespace if not already done in data.lua
+-- Initialize addon namespace
 PeaversCurrencyData = PeaversCurrencyData or {}
 local PCD = PeaversCurrencyData
 
@@ -36,7 +36,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
 
         -- Print loaded message
         print("|cFF33FF99PeaversCurrencyData|r: Loaded successfully. Currency data from " ..
-        (PCD.lastUpdated or "unknown date"))
+        (PCD.CurrencyRates and PCD.CurrencyRates.lastUpdated or "unknown date"))
 
         -- Clear cache on load
         cachedConversions = {}
@@ -82,7 +82,7 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
     elseif cmd == "info" then
         print("|cFF33FF99PeaversCurrencyData:|r")
         print("  Version: 1.0")
-        print("  Data updated: " .. (PCD.lastUpdated or "unknown"))
+        print("  Data updated: " .. (PCD.CurrencyRates and PCD.CurrencyRates.lastUpdated or "unknown"))
         print("  Cache entries: " .. PCD:GetCacheSize())
         print("  Default currency: " .. PCD.preferences.defaultCurrency)
         print("  Default region: " .. (PCD.preferences.defaultRegion or "US"))
@@ -99,8 +99,8 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
 
         local result = PCD:ConvertCurrency(amount, from, to)
         if result then
-            local fromSymbol = PCD.symbols[from] or ""
-            local toSymbol = PCD.symbols[to] or ""
+            local fromSymbol = PCD.CurrencyRates.symbols[from] or ""
+            local toSymbol = PCD.CurrencyRates.symbols[to] or ""
             print(string.format("%s%s %s = %s%s %s", fromSymbol, amount, from, toSymbol, result, to))
         else
             print("Conversion failed. Make sure the currencies are valid.")
@@ -108,8 +108,8 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
     elseif cmd == "gold" or cmd == "g" then
         if not arg or arg == "" then
             print("|cFF33FF99WoW Token Prices:|r")
-            for region, data in pairs(PCD.wowToken or {}) do
-                local symbol = PCD.symbols[data.currency] or ""
+            for region, data in pairs(PCD.TokenPrices and PCD.TokenPrices.regions or {}) do
+                local symbol = PCD.CurrencyRates.symbols[data.currency] or ""
                 print(string.format("  %s: %s (%s%s %s)", region, PCD:FormatWoWCurrency(data.goldPrice / 10000), symbol,
                     data.realPrice, data.currency))
             end
@@ -131,9 +131,9 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
 
         local result = PCD:GoldToCurrency(amount / 10000, region, currency)
         if result then
-            local tokenData = PCD.wowToken[region]
+            local tokenData = PCD.TokenPrices.regions[region]
             local currencyCode = currency or tokenData.currency
-            local symbol = PCD.symbols[currencyCode] or ""
+            local symbol = PCD.CurrencyRates.symbols[currencyCode] or ""
 
             print(string.format("%s = %s%s %s",
                 PCD:FormatWoWCurrency(amount / 10000),
@@ -163,7 +163,7 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
 
         local result = PCD:CurrencyToGold(amount, currency, region)
         if result then
-            local symbol = PCD.symbols[currency] or ""
+            local symbol = PCD.CurrencyRates.symbols[currency] or ""
 
             print(string.format("%s%s %s = %s",
                 symbol,
@@ -175,8 +175,8 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
         end
     elseif cmd == "token" then
         print("|cFF33FF99WoW Token Prices:|r")
-        for region, data in pairs(PCD.wowToken or {}) do
-            local symbol = PCD.symbols[data.currency] or ""
+        for region, data in pairs(PCD.TokenPrices and PCD.TokenPrices.regions or {}) do
+            local symbol = PCD.CurrencyRates.symbols[data.currency] or ""
             print(string.format("  %s: %s (%s%s %s)",
                 region,
                 PCD:FormatWoWCurrency(data.goldPrice / 10000),
@@ -197,11 +197,11 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
         table.sort(currencies)
 
         for i, currency in ipairs(currencies) do
-            local symbol = PCD.symbols[currency] or ""
+            local symbol = PCD.CurrencyRates.symbols[currency] or ""
             print(string.format("  %s (%s)", currency, symbol))
         end
     elseif cmd == "default" then
-        if arg and PCD.rates[arg:upper()] then
+        if arg and PCD.CurrencyRates.rates[arg:upper()] then
             PCD.preferences.defaultCurrency = arg:upper()
             print("Default currency set to: " .. arg:upper())
         else
@@ -225,3 +225,95 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
         print("Unknown command. Type /pcd help for a list of commands.")
     end
 end
+
+-- Create sample data for testing if needed (will be overridden by actual files if present)
+function PCD:CreateSampleData()
+    if not PCD.CurrencyRates then
+        PCD.CurrencyRates = {
+            lastUpdated = date("%Y-%m-%d"),
+            rates = {
+                USD = {
+                    EUR = 0.85,
+                    GBP = 0.75,
+                    JPY = 110.25,
+                    CAD = 1.25,
+                    AUD = 1.35,
+                    CHF = 0.92,
+                    CNY = 6.45,
+                    HKD = 7.78,
+                    NZD = 1.42,
+                    KRW = 1150.50,
+                    USD = 1,
+                },
+                EUR = {
+                    USD = 1.18,
+                    GBP = 0.88,
+                    JPY = 130.00,
+                    CAD = 1.47,
+                    AUD = 1.59,
+                    CHF = 1.08,
+                    CNY = 7.60,
+                    HKD = 9.17,
+                    NZD = 1.67,
+                    KRW = 1357.32,
+                    EUR = 1,
+                },
+            },
+            symbols = {
+                USD = "$",
+                EUR = "€",
+                GBP = "£",
+                JPY = "¥",
+                CAD = "C$",
+                AUD = "A$",
+                CHF = "Fr",
+                CNY = "¥",
+                HKD = "HK$",
+                NZD = "NZ$",
+                KRW = "₩",
+                TWD = "NT$",
+            }
+        }
+
+        print("|cFF33FF99PeaversCurrencyData:|r Created sample currency data for testing")
+    end
+
+    if not PCD.TokenPrices then
+        PCD.TokenPrices = {
+            lastUpdated = date("%Y-%m-%d"),
+            regions = {
+                US = {
+                    goldPrice = 250000, -- 250k gold for a token
+                    realPrice = 20,     -- $20 USD
+                    currency = "USD",
+                    goldValue = 20 / 250000, -- Value of 1 gold in USD
+                },
+                EU = {
+                    goldPrice = 300000, -- 300k gold for a token
+                    realPrice = 20,     -- €20 EUR
+                    currency = "EUR",
+                    goldValue = 20 / 300000, -- Value of 1 gold in EUR
+                },
+                KR = {
+                    goldPrice = 150000, -- 150k gold for a token
+                    realPrice = 22000,  -- ₩22,000 KRW
+                    currency = "KRW",
+                    goldValue = 22000 / 150000, -- Value of 1 gold in KRW
+                },
+                TW = {
+                    goldPrice = 200000, -- 200k gold for a token
+                    realPrice = 500,    -- NT$500 TWD
+                    currency = "TWD",
+                    goldValue = 500 / 200000, -- Value of 1 gold in TWD
+                },
+            }
+        }
+
+        print("|cFF33FF99PeaversCurrencyData:|r Created sample token data for testing")
+    end
+
+    return true
+end
+
+-- Create sample data if needed
+PCD:CreateSampleData()

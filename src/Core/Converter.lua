@@ -1,4 +1,4 @@
--- PeaversCurrencyData/src/Gold.lua
+-- PeaversCurrencyData/src/Core/Converter.lua
 local addonName, addon = ...
 
 -- Initialize addon namespace
@@ -25,11 +25,11 @@ function PCD:GoldToCurrency(goldAmount, region, currency, roundDecimals)
     region = region or "US"
 
     -- Check if we have token data for this region
-    if not PCD.wowToken or not PCD.wowToken[region] then
+    if not PCD.TokenPrices or not PCD.TokenPrices.regions or not PCD.TokenPrices.regions[region] then
         return nil
     end
 
-    local tokenData = PCD.wowToken[region]
+    local tokenData = PCD.TokenPrices.regions[region]
     currency = currency or tokenData.currency
 
     -- Calculate the value in the region's native currency
@@ -83,11 +83,11 @@ function PCD:CurrencyToGold(currencyAmount, currency, region, roundDecimals)
     end
 
     -- Check if we have token data for this region
-    if not PCD.wowToken or not PCD.wowToken[region] then
+    if not PCD.TokenPrices or not PCD.TokenPrices.regions or not PCD.TokenPrices.regions[region] then
         return nil
     end
 
-    local tokenData = PCD.wowToken[region]
+    local tokenData = PCD.TokenPrices.regions[region]
 
     -- Convert to the region's currency if needed
     local regionCurrencyAmount = currencyAmount
@@ -120,11 +120,11 @@ function PCD:GetGoldValue(region, currency)
     region = region or "US"
 
     -- Check if we have token data for this region
-    if not PCD.wowToken or not PCD.wowToken[region] then
+    if not PCD.TokenPrices or not PCD.TokenPrices.regions or not PCD.TokenPrices.regions[region] then
         return nil
     end
 
-    local tokenData = PCD.wowToken[region]
+    local tokenData = PCD.TokenPrices.regions[region]
     currency = currency or tokenData.currency
 
     -- If the requested currency is the same as the region's currency, return the gold value
@@ -144,11 +144,11 @@ end
 function PCD:GetTokenData(region)
     region = region or "US"
 
-    if not PCD.wowToken or not PCD.wowToken[region] then
+    if not PCD.TokenPrices or not PCD.TokenPrices.regions or not PCD.TokenPrices.regions[region] then
         return nil
     end
 
-    return PCD.wowToken[region]
+    return PCD.TokenPrices.regions[region]
 end
 
 --[[
@@ -210,50 +210,4 @@ function PCD:FormatWoWCurrency(amount, includeIcons, colorize)
     end
 
     return result
-end
-
---[[
-    Creates sample token data for testing when the actual data file is not yet generated
-    This is mainly for addon development purposes
-]]
-function PCD:CreateSampleTokenData()
-    if PCD.wowToken then
-        return false -- Data already exists
-    end
-
-    -- Sample WoW Token data
-    PCD.wowToken = {
-        US = {
-            goldPrice = 250000, -- 250k gold for a token
-            realPrice = 20,     -- $20 USD
-            currency = "USD",
-            goldValue = 20 / 250000, -- Value of 1 gold in USD
-        },
-        EU = {
-            goldPrice = 300000, -- 300k gold for a token
-            realPrice = 20,     -- €20 EUR
-            currency = "EUR",
-            goldValue = 20 / 300000, -- Value of 1 gold in EUR
-        },
-        KR = {
-            goldPrice = 150000, -- 150k gold for a token
-            realPrice = 22000,  -- ₩22,000 KRW
-            currency = "KRW",
-            goldValue = 22000 / 150000, -- Value of 1 gold in KRW
-        },
-        TW = {
-            goldPrice = 200000, -- 200k gold for a token
-            realPrice = 500,    -- NT$500 TWD
-            currency = "TWD",
-            goldValue = 500 / 200000, -- Value of 1 gold in TWD
-        },
-    }
-
-    print("|cFF33FF99PeaversCurrencyData:|r Created sample token data for testing")
-    return true
-end
-
--- Create sample token data if needed (will be overridden by actual TokenData.lua if present)
-if not PCD.wowToken then
-    PCD:CreateSampleTokenData()
 end

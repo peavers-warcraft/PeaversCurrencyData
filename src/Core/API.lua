@@ -1,4 +1,4 @@
--- PeaversCurrencyData/api.lua
+-- PeaversCurrencyData/src/Core/API.lua
 local addonName, addon = ...
 
 -- Initialize addon namespace if not already done
@@ -29,22 +29,22 @@ function PCD:GetExchangeRate(fromCurrency, toCurrency)
     end
 
     -- Check if we have direct rates
-    if PCD.rates and PCD.rates[fromCurrency] and PCD.rates[fromCurrency][toCurrency] then
-        return PCD.rates[fromCurrency][toCurrency]
+    if PCD.CurrencyRates and PCD.CurrencyRates.rates[fromCurrency] and PCD.CurrencyRates.rates[fromCurrency][toCurrency] then
+        return PCD.CurrencyRates.rates[fromCurrency][toCurrency]
     end
 
     -- If we have the inverse, use that
-    if PCD.rates and PCD.rates[toCurrency] and PCD.rates[toCurrency][fromCurrency] then
-        return 1 / PCD.rates[toCurrency][fromCurrency]
+    if PCD.CurrencyRates and PCD.CurrencyRates.rates[toCurrency] and PCD.CurrencyRates.rates[toCurrency][fromCurrency] then
+        return 1 / PCD.CurrencyRates.rates[toCurrency][fromCurrency]
     end
 
     -- If we have rates for both currencies to USD, we can calculate a cross rate
     if fromCurrency ~= "USD" and toCurrency ~= "USD" and
-        PCD.rates and PCD.rates["USD"] and
-        PCD.rates["USD"][fromCurrency] and PCD.rates["USD"][toCurrency] then
+        PCD.CurrencyRates and PCD.CurrencyRates.rates["USD"] and
+        PCD.CurrencyRates.rates["USD"][fromCurrency] and PCD.CurrencyRates.rates["USD"][toCurrency] then
         -- USD/FROM * USD/TO
-        local usdToFrom = 1 / PCD.rates["USD"][fromCurrency]
-        local usdToTo = PCD.rates["USD"][toCurrency]
+        local usdToFrom = 1 / PCD.CurrencyRates.rates["USD"][fromCurrency]
+        local usdToTo = PCD.CurrencyRates.rates["USD"][toCurrency]
         return usdToFrom * usdToTo
     end
 
@@ -113,8 +113,8 @@ end
 function PCD:GetAvailableCurrencies()
     local currencies = {}
 
-    if PCD.rates then
-        for currency, _ in pairs(PCD.rates) do
+    if PCD.CurrencyRates and PCD.CurrencyRates.rates then
+        for currency, _ in pairs(PCD.CurrencyRates.rates) do
             table.insert(currencies, currency)
         end
     end
@@ -127,7 +127,7 @@ end
     @return A string with the last update date (YYYY-MM-DD)
 ]]
 function PCD:GetLastUpdated()
-    return PCD.lastUpdated or "Unknown"
+    return PCD.CurrencyRates and PCD.CurrencyRates.lastUpdated or "Unknown"
 end
 
 --[[
@@ -138,11 +138,11 @@ end
 function PCD:GetCurrencySymbol(currencyCode)
     currencyCode = currencyCode and currencyCode:upper()
 
-    if not currencyCode or not PCD.symbols then
+    if not currencyCode or not PCD.CurrencyRates or not PCD.CurrencyRates.symbols then
         return currencyCode
     end
 
-    return PCD.symbols[currencyCode] or currencyCode
+    return PCD.CurrencyRates.symbols[currencyCode] or currencyCode
 end
 
 --[[
@@ -187,68 +187,4 @@ function PCD:FormatCurrency(amount, currencyCode, symbolPosition, decimalPlaces)
     else
         return formattedNumber .. symbol
     end
-end
-
---[[
-    Creates a sample data.lua file for testing when the actual data file is not yet generated
-    This is mainly for addon development purposes
-]]
-function PCD:CreateSampleData()
-    if PCD.rates then
-        return false -- Data already exists
-    end
-
-    PCD.lastUpdated = date("%Y-%m-%d")
-
-    -- Sample exchange rates (not real data)
-    PCD.rates = {
-        USD = {
-            EUR = 0.85,
-            GBP = 0.75,
-            JPY = 110.25,
-            CAD = 1.25,
-            AUD = 1.35,
-            CHF = 0.92,
-            CNY = 6.45,
-            HKD = 7.78,
-            NZD = 1.42,
-            KRW = 1150.50,
-        },
-        EUR = {
-            USD = 1.18,
-            GBP = 0.88,
-            JPY = 130.00,
-            CAD = 1.47,
-            AUD = 1.59,
-            CHF = 1.08,
-            CNY = 7.60,
-            HKD = 9.17,
-            NZD = 1.67,
-            KRW = 1357.32,
-        },
-        -- Add more if needed
-    }
-
-    -- Currency symbols
-    PCD.symbols = {
-        USD = "$",
-        EUR = "€",
-        GBP = "£",
-        JPY = "¥",
-        CAD = "C$",
-        AUD = "A$",
-        CHF = "Fr",
-        CNY = "¥",
-        HKD = "HK$",
-        NZD = "NZ$",
-        KRW = "₩",
-    }
-
-    print("|cFF33FF99PeaversCurrencyData:|r Created sample data for testing")
-    return true
-end
-
--- Create sample data if needed (will be overridden by real data.lua if present)
-if not PCD.rates then
-    PCD:CreateSampleData()
 end

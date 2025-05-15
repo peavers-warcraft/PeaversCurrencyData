@@ -1,3 +1,4 @@
+// scripts/update-token.js
 /**
  * Script to fetch WoW token prices from the official Blizzard API
  * Requires client ID and secret from the Blizzard Developer Portal
@@ -7,7 +8,8 @@ const fs = require('fs');
 const path = require('path');
 const querystring = require('querystring');
 
-// Configuration
+// Configuration - Updated path for the new structure
+const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'Generated', 'TokenPrices.lua');
 
 // Blizzard API credentials (to be filled in)
 const CLIENT_ID = process.env.BLIZZARD_CLIENT_ID || '';
@@ -220,39 +222,26 @@ async function fetchAllTokenPrices() {
  * @returns {string} - Generated Lua code
  */
 function generateLuaCode(tokenData) {
-    let luaTable = `-- Auto-generated token data file\n`;
+    let luaTable = `-- Auto-generated token price data\n`;
     luaTable += `-- Last updated: ${dateString}\n\n`;
     luaTable += `PeaversCurrencyData = PeaversCurrencyData or {}\n\n`;
     luaTable += `-- WoW Token prices across regions\n`;
-    luaTable += `PeaversCurrencyData.wowToken = {\n`;
+    luaTable += `PeaversCurrencyData.TokenPrices = {\n`;
+    luaTable += `  lastUpdated = "${dateString}",\n\n`;
+    luaTable += `  regions = {\n`;
 
     // Add token data for each region
     for (const [region, data] of Object.entries(tokenData)) {
-        luaTable += `  ${region} = {\n`;
-        luaTable += `    goldPrice = ${Math.round(data.goldPrice)},  -- Gold cost of a token\n`;
-        luaTable += `    realPrice = ${data.realPrice},      -- ${data.currency} cost of a token\n`;
-        luaTable += `    currency = "${data.currency}",\n`;
-        luaTable += `    goldValue = ${data.goldValue.toFixed(10)}, -- ${data.currency} value of 1 gold\n`;
-        luaTable += `  },\n`;
+        luaTable += `    ${region} = {\n`;
+        luaTable += `      goldPrice = ${Math.round(data.goldPrice)},  -- Gold cost of a token\n`;
+        luaTable += `      realPrice = ${data.realPrice},      -- ${data.currency} cost of a token\n`;
+        luaTable += `      currency = "${data.currency}",\n`;
+        luaTable += `      goldValue = ${data.goldValue.toFixed(10)}, -- ${data.currency} value of 1 gold\n`;
+        luaTable += `    },\n`;
     }
 
-    luaTable += `}\n\n`;
-
-    // Add helper functions
-    luaTable += `-- Helper functions for token data access (these will be directly accessible)\n`;
-    luaTable += `function PeaversCurrencyData:GetGoldValue(region, currency)\n`;
-    luaTable += `  region = region or "US"\n`;
-    luaTable += `  local tokenData = self.wowToken[region]\n`;
-    luaTable += `  if not tokenData then return nil end\n\n`;
-    luaTable += `  currency = currency or tokenData.currency\n`;
-    luaTable += `  \n`;
-    luaTable += `  -- If the requested currency is the same as the region's currency, return the gold value\n`;
-    luaTable += `  if currency == tokenData.currency then\n`;
-    luaTable += `    return tokenData.goldValue\n`;
-    luaTable += `  end\n\n`;
-    luaTable += `  -- Otherwise, convert the gold value from the region's currency to the requested currency\n`;
-    luaTable += `  return self:ConvertCurrency(tokenData.goldValue, tokenData.currency, currency)\n`;
-    luaTable += `end\n`;
+    luaTable += `  }\n`;
+    luaTable += `}\n`;
 
     return luaTable;
 }
@@ -273,18 +262,18 @@ async function main() {
             process.exit(1);
         }
 
-        // Fetch token data
-        const tokenData = await fetchAllTokenPrices();
-
-        // Generate Lua code
-        const luaCode = generateLuaCode(tokenData);
-
         // Ensure the output directory exists
         const dir = path.dirname(OUTPUT_FILE);
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true });
             console.log(`Created directory: ${dir}`);
         }
+
+        // Fetch token data
+        const tokenData = await fetchAllTokenPrices();
+
+        // Generate Lua code
+        const luaCode = generateLuaCode(tokenData);
 
         // Write to file
         fs.writeFileSync(OUTPUT_FILE, luaCode);

@@ -5,9 +5,11 @@
 ## Version: 1.0
 ## SavedVariables: PeaversCurrencyDataDB
 
-# Core files
-src/Data.lua
-src/TokenData.lua
-src/Core.lua
-src/Api.lua
-src/Gold.lua
+# Generated data files
+src/Generated/CurrencyRates.lua
+src/Generated/TokenPrices.lua
+
+# Core functionality
+src/Core/Init.lua
+src/Core/API.lua
+src/Core/Converter.lua

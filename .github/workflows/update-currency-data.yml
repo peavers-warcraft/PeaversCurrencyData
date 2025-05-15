@@ -25,6 +25,9 @@ jobs:
           # Make sure scripts directory exists
           mkdir -p scripts
           
+          # Ensure the output directory exists
+          mkdir -p src/Generated
+          
           # Run the update script
           node scripts/update-currency.js
 
@@ -37,9 +40,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # Check if there are changes to commit
-          if [[ -n $(git status --porcelain src/Data.lua) ]]; then
+          if [[ -n $(git status --porcelain src/Generated/CurrencyRates.lua) ]]; then
             # Commit and push changes
-            git add src/Data.lua
+            git add src/Generated/CurrencyRates.lua
             git commit -m "Update currency exchange rates - $(date +'%Y-%m-%d')"
 
             # Push changes using the personal GitHub token

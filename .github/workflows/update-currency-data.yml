@@ -162,5 +162,5 @@ jobs:
         run: |
           git config --global user.name 'Currency Bot'
           git config --global user.email 'currency-bot@github.com'
-          git add PeaversCurrencyData/data.lua
+          git add PeaversCurrencyData/src/Data.lua
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update currency data - $(date +'%Y-%m-%d')" && git push origin HEAD:${GITHUB_REF})

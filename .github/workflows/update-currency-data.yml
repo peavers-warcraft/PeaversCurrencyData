@@ -28,7 +28,7 @@ jobs:
           const fs = require('fs');
           const path = require('path');
           
-          const dataPath = path.join('PeaversCurrencyData', 'data.lua');
+          const dataPath = path.join('PeaversCurrencyData', 'src', 'Data.lua');
           const apiUrl = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
           
           // Get current date in YYYY-MM-DD format

@@ -28,7 +28,7 @@ jobs:
           const fs = require('fs');
           const path = require('path');
           
-          const dataPath = path.join('PeaversCurrencyData', 'src', 'Data.lua');
+          const dataPath = path.join('src', 'Data.lua');
           const apiUrl = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
           
           // Get current date in YYYY-MM-DD format
@@ -160,5 +160,5 @@ jobs:
         run: |
           git config --global user.name 'Currency Bot'
           git config --global user.email 'currency-bot@github.com'
-          git add PeaversCurrencyData/src/Data.lua
+          git add src/Data.lua
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update currency data - $(date +'%Y-%m-%d')" && git push)

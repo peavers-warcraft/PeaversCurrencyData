@@ -160,8 +160,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          ls -al
-          git config --global user.name 'Currency Bot'
-          git config --global user.email 'peavers@gmail.com'
+          # Configure Git
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Commit and push changes
           git add src/Data.lua
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update currency data - $(date +'%Y-%m-%d')" && git push origin HEAD:${GITHUB_REF})
+          git commit -m "Update currency data - $(date +'%Y-%m-%d')"
+
+          # Push changes using the personal GitHub token
+          git remote set-url origin https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git push

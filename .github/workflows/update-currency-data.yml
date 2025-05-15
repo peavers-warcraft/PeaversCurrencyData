@@ -162,6 +162,6 @@ jobs:
         run: |
           ls -al
           git config --global user.name 'Currency Bot'
-          git config --global user.email 'currency-bot@github.com'
+          git config --global user.email 'peavers@gmail.com'
           git add src/Data.lua
           git diff --quiet && git diff --staged --quiet || (git commit -m "Update currency data - $(date +'%Y-%m-%d')" && git push origin HEAD:${GITHUB_REF})

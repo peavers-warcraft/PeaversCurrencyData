@@ -1,4 +1,4 @@
--- PeaversCurrencyData/core.lua
+-- PeaversCurrencyData/src/Core.lua
 local addonName, addon = ...
 
 -- Initialize addon namespace if not already done in data.lua
@@ -29,6 +29,7 @@ eventFrame:SetScript("OnEvent", function(self, event, ...)
             PCD.preferences = {
                 defaultCurrency = "USD",
                 decimalPlaces = 2,
+                defaultRegion = "US",
                 -- Add more preferences as needed
             }
         end
@@ -71,8 +72,12 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
         print("|cFF33FF99PeaversCurrencyData Commands:|r")
         print("  /pcd info - Show addon information")
         print("  /pcd convert [amount] [from] [to] - Convert currency")
+        print("  /pcd gold [amount] [region] [currency] - Convert WoW gold to real currency")
+        print("  /pcd money [amount] [currency] [region] - Convert real currency to WoW gold")
+        print("  /pcd token - Show WoW token prices across regions")
         print("  /pcd list - List available currencies")
         print("  /pcd default [currency] - Set default currency")
+        print("  /pcd region [region] - Set default region")
         print("  /pcd clearcache - Clear conversion cache")
     elseif cmd == "info" then
         print("|cFF33FF99PeaversCurrencyData:|r")
@@ -80,6 +85,7 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
         print("  Data updated: " .. (PCD.lastUpdated or "unknown"))
         print("  Cache entries: " .. PCD:GetCacheSize())
         print("  Default currency: " .. PCD.preferences.defaultCurrency)
+        print("  Default region: " .. (PCD.preferences.defaultRegion or "US"))
     elseif cmd == "convert" and arg then
         local amount, from, to = strsplit(" ", arg, 3)
         amount = tonumber(amount)
@@ -99,6 +105,92 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
         else
             print("Conversion failed. Make sure the currencies are valid.")
         end
+    elseif cmd == "gold" or cmd == "g" then
+        if not arg or arg == "" then
+            print("|cFF33FF99WoW Token Prices:|r")
+            for region, data in pairs(PCD.wowToken or {}) do
+                local symbol = PCD.symbols[data.currency] or ""
+                print(string.format("  %s: %s (%s%s %s)", region, PCD:FormatWoWCurrency(data.goldPrice / 10000), symbol,
+                    data.realPrice, data.currency))
+            end
+            print("Usage: /pcd gold value [region] [currency]")
+            print("Example: /pcd gold 100000 US EUR")
+            return
+        end
+
+        local amount, region, currency = strsplit(" ", arg, 3)
+        amount = tonumber(amount)
+
+        if not amount then
+            print("Invalid amount. Usage: /pcd gold [amount] [region] [currency]")
+            return
+        end
+
+        region = region and region:upper() or PCD.preferences.defaultRegion or "US"
+        currency = currency and currency:upper() or nil
+
+        local result = PCD:GoldToCurrency(amount / 10000, region, currency)
+        if result then
+            local tokenData = PCD.wowToken[region]
+            local currencyCode = currency or tokenData.currency
+            local symbol = PCD.symbols[currencyCode] or ""
+
+            print(string.format("%s = %s%s %s",
+                PCD:FormatWoWCurrency(amount / 10000),
+                symbol,
+                string.format("%.2f", result),
+                currencyCode))
+        else
+            print("Conversion failed. Check region and currency.")
+        end
+    elseif cmd == "money" or cmd == "m" then
+        if not arg or arg == "" then
+            print("Usage: /pcd money [amount] [currency] [region]")
+            print("Example: /pcd money 10 USD US")
+            return
+        end
+
+        local amount, currency, region = strsplit(" ", arg, 3)
+        amount = tonumber(amount)
+
+        if not amount then
+            print("Invalid amount. Usage: /pcd money [amount] [currency] [region]")
+            return
+        end
+
+        currency = currency and currency:upper() or PCD.preferences.defaultCurrency
+        region = region and region:upper() or PCD.preferences.defaultRegion or "US"
+
+        local result = PCD:CurrencyToGold(amount, currency, region)
+        if result then
+            local symbol = PCD.symbols[currency] or ""
+
+            print(string.format("%s%s %s = %s",
+                symbol,
+                amount,
+                currency,
+                PCD:FormatWoWCurrency(result)))
+        else
+            print("Conversion failed. Check currency and region.")
+        end
+    elseif cmd == "token" then
+        print("|cFF33FF99WoW Token Prices:|r")
+        for region, data in pairs(PCD.wowToken or {}) do
+            local symbol = PCD.symbols[data.currency] or ""
+            print(string.format("  %s: %s (%s%s %s)",
+                region,
+                PCD:FormatWoWCurrency(data.goldPrice / 10000),
+                symbol,
+                data.realPrice,
+                data.currency))
+
+            -- Show the value of 1000g in the region's currency
+            local goldValue = PCD:GoldToCurrency(1, region)
+            print(string.format("  1 gold = %s%s %s",
+                symbol,
+                string.format("%.5f", goldValue),
+                data.currency))
+        end
     elseif cmd == "list" then
         print("|cFF33FF99Available Currencies:|r")
         local currencies = PCD:GetAvailableCurrencies()
@@ -115,6 +207,15 @@ SlashCmdList["PEAVERSCURRENCY"] = function(msg)
         else
             print("Current default currency: " .. PCD.preferences.defaultCurrency)
             print("Usage: /pcd default [currency]")
+        end
+    elseif cmd == "region" then
+        local validRegions = { US = true, EU = true, KR = true, TW = true }
+        if arg and validRegions[arg:upper()] then
+            PCD.preferences.defaultRegion = arg:upper()
+            print("Default region set to: " .. arg:upper())
+        else
+            print("Current default region: " .. (PCD.preferences.defaultRegion or "US"))
+            print("Usage: /pcd region [US|EU|KR|TW]")
         end
     elseif cmd == "clearcache" then
         local size = PCD:GetCacheSize()

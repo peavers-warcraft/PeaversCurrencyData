@@ -1,8 +1,7 @@
 name: Update Version and Tag
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: '20 * * * *'
 
 permissions:
   contents: write

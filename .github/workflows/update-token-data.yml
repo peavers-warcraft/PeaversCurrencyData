@@ -2,8 +2,8 @@ name: Update WoW Token Prices
 
 on:
   schedule:
-    # Run daily at 02:00 UTC (separate time from currency update)
-    - cron: '0 2 * * *'
+    - cron: '10 * * * *'
+
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
@@ -30,10 +30,10 @@ jobs:
         run: |
           # Make sure scripts directory exists
           mkdir -p scripts
-          
+
           # Ensure the output directory exists
           mkdir -p src/Generated
-          
+
           # Run the update script
           node scripts/update-token.js
 

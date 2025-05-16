@@ -1,190 +1,158 @@
--- PeaversCurrencyData/src/Core/API.lua
-local addonName, addon = ...
+--[[
+    PeaversCurrencyData
+    Copyright (C) 2024 Peavers
+    
+    Core API for currency conversion
+--]]
 
--- Initialize addon namespace if not already done
+local _, addon = ...
+
 PeaversCurrencyData = PeaversCurrencyData or {}
 local PCD = PeaversCurrencyData
 
--- Cache for conversions
+local API = {}
+PCD.API = API
+
 local conversionCache = {}
+local cacheTimestamps = {}
 
---[[
-    Gets the exchange rate between two currencies
-    @param fromCurrency The source currency code (e.g., "USD")
-    @param toCurrency The target currency code (e.g., "EUR")
-    @return The exchange rate or nil if not available
-]]
-function PCD:GetExchangeRate(fromCurrency, toCurrency)
-    -- Validate input
-    fromCurrency = fromCurrency and fromCurrency:upper()
-    toCurrency = toCurrency and toCurrency:upper()
-
-    if not fromCurrency or not toCurrency then
-        return nil
-    end
-
-    -- Check for same currency
-    if fromCurrency == toCurrency then
-        return 1
-    end
-
-    -- Check if we have direct rates
-    if PCD.CurrencyRates and PCD.CurrencyRates.rates[fromCurrency] and PCD.CurrencyRates.rates[fromCurrency][toCurrency] then
-        return PCD.CurrencyRates.rates[fromCurrency][toCurrency]
-    end
-
-    -- If we have the inverse, use that
-    if PCD.CurrencyRates and PCD.CurrencyRates.rates[toCurrency] and PCD.CurrencyRates.rates[toCurrency][fromCurrency] then
-        return 1 / PCD.CurrencyRates.rates[toCurrency][fromCurrency]
-    end
-
-    -- If we have rates for both currencies to USD, we can calculate a cross rate
-    if fromCurrency ~= "USD" and toCurrency ~= "USD" and
-        PCD.CurrencyRates and PCD.CurrencyRates.rates["USD"] and
-        PCD.CurrencyRates.rates["USD"][fromCurrency] and PCD.CurrencyRates.rates["USD"][toCurrency] then
-        -- USD/FROM * USD/TO
-        local usdToFrom = 1 / PCD.CurrencyRates.rates["USD"][fromCurrency]
-        local usdToTo = PCD.CurrencyRates.rates["USD"][toCurrency]
-        return usdToFrom * usdToTo
-    end
-
-    -- No conversion possible
-    return nil
+local function GetCacheKey(fromCurrency, toCurrency)
+    return fromCurrency .. ":" .. toCurrency
 end
 
---[[
-    Converts an amount from one currency to another
-    @param amount The amount to convert
-    @param fromCurrency The source currency code (e.g., "USD")
-    @param toCurrency The target currency code (e.g., "EUR")
-    @param roundDecimals (optional) Number of decimal places to round to
-    @return The converted amount or nil if conversion is not possible
-]]
-function PCD:ConvertCurrency(amount, fromCurrency, toCurrency, roundDecimals)
-    -- Validate input
-    if not amount or type(amount) ~= "number" then
-        return nil
+local function IsCacheExpired(key)
+    local timestamp = cacheTimestamps[key]
+    if not timestamp then return true end
+    return (GetTime() - timestamp) > PCD.Constants.CACHE_EXPIRY
+end
+
+function API.GetExchangeRate(fromCurrency, toCurrency)
+    fromCurrency = PCD.Utils.ToUpper(fromCurrency)
+    toCurrency = PCD.Utils.ToUpper(toCurrency)
+    
+    if not fromCurrency or not toCurrency then return nil end
+    if fromCurrency == toCurrency then return 1 end
+    
+    local cacheKey = GetCacheKey(fromCurrency, toCurrency)
+    if conversionCache[cacheKey] and not IsCacheExpired(cacheKey) then
+        return conversionCache[cacheKey]
     end
-
-    fromCurrency = fromCurrency and fromCurrency:upper()
-    toCurrency = toCurrency and toCurrency:upper()
-
-    if not fromCurrency or not toCurrency then
-        return nil
+    
+    local rates = PCD.CurrencyRates and PCD.CurrencyRates.rates
+    if not rates then return nil end
+    
+    local rate = nil
+    
+    if rates[fromCurrency] and rates[fromCurrency][toCurrency] then
+        rate = rates[fromCurrency][toCurrency]
+    elseif rates[toCurrency] and rates[toCurrency][fromCurrency] then
+        rate = 1 / rates[toCurrency][fromCurrency]
+    elseif fromCurrency ~= "USD" and toCurrency ~= "USD" then
+        if rates["USD"] and rates["USD"][fromCurrency] and rates["USD"][toCurrency] then
+            rate = rates["USD"][toCurrency] / rates["USD"][fromCurrency]
+        end
     end
-
-    -- Same currency, no conversion needed
-    if fromCurrency == toCurrency then
-        return amount
+    
+    if rate then
+        conversionCache[cacheKey] = rate
+        cacheTimestamps[cacheKey] = GetTime()
     end
+    
+    return rate
+end
 
-    -- Check cache first
-    local cacheKey = fromCurrency .. ":" .. toCurrency
-    if conversionCache[cacheKey] then
-        return amount * conversionCache[cacheKey]
-    end
-
-    -- Get the exchange rate
-    local rate = PCD:GetExchangeRate(fromCurrency, toCurrency)
-    if not rate then
-        return nil
-    end
-
-    -- Cache the rate for future use
-    conversionCache[cacheKey] = rate
-
-    -- Convert the amount
+function API.ConvertCurrency(amount, fromCurrency, toCurrency, roundDecimals)
+    if not amount or type(amount) ~= "number" then return nil end
+    
+    fromCurrency = PCD.Utils.ToUpper(fromCurrency)
+    toCurrency = PCD.Utils.ToUpper(toCurrency)
+    
+    if not fromCurrency or not toCurrency then return nil end
+    if fromCurrency == toCurrency then return amount end
+    
+    local rate = API.GetExchangeRate(fromCurrency, toCurrency)
+    if not rate then return nil end
+    
     local result = amount * rate
-
-    -- Round if requested
-    if roundDecimals or PCD.preferences.decimalPlaces then
-        local decimals = roundDecimals or PCD.preferences.decimalPlaces
-        local mult = 10 ^ decimals
-        result = math.floor(result * mult + 0.5) / mult
+    
+    if roundDecimals then
+        result = PCD.Utils.Round(result, roundDecimals)
+    elseif PCD.preferences and PCD.preferences.decimalPlaces then
+        result = PCD.Utils.Round(result, PCD.preferences.decimalPlaces)
     end
-
+    
     return result
 end
 
---[[
-    Gets a list of all available currencies
-    @return An array of currency codes
-]]
-function PCD:GetAvailableCurrencies()
-    local currencies = {}
-
-    if PCD.CurrencyRates and PCD.CurrencyRates.rates then
-        for currency, _ in pairs(PCD.CurrencyRates.rates) do
-            table.insert(currencies, currency)
-        end
+function API.GetAvailableCurrencies()
+    if not PCD.CurrencyRates or not PCD.CurrencyRates.rates then
+        return {}
     end
-
-    return currencies
+    
+    return PCD.Utils.TableKeys(PCD.CurrencyRates.rates)
 end
 
---[[
-    Gets the timestamp when the currency data was last updated
-    @return A string with the last update date (YYYY-MM-DD)
-]]
-function PCD:GetLastUpdated()
+function API.GetLastUpdated()
     return PCD.CurrencyRates and PCD.CurrencyRates.lastUpdated or "Unknown"
 end
 
---[[
-    Gets the currency symbol for a given currency code
-    @param currencyCode The currency code (e.g., "USD")
-    @return The currency symbol (e.g., "$") or the currency code if no symbol is found
-]]
-function PCD:GetCurrencySymbol(currencyCode)
-    currencyCode = currencyCode and currencyCode:upper()
-
+function API.GetCurrencySymbol(currencyCode)
+    currencyCode = PCD.Utils.ToUpper(currencyCode)
+    
     if not currencyCode or not PCD.CurrencyRates or not PCD.CurrencyRates.symbols then
         return currencyCode
     end
-
+    
     return PCD.CurrencyRates.symbols[currencyCode] or currencyCode
 end
 
---[[
-    Formats a currency amount with the appropriate symbol
-    @param amount The amount to format
-    @param currencyCode The currency code
-    @param symbolPosition "before" or "after" (default based on currency)
-    @param decimalPlaces Number of decimal places (default from preferences)
-    @return A formatted string (e.g., "$10.50" or "10,50€")
-]]
-function PCD:FormatCurrency(amount, currencyCode, symbolPosition, decimalPlaces)
+function API.FormatCurrency(amount, currencyCode, symbolPosition, decimalPlaces)
     if not amount or not currencyCode then
         return tostring(amount)
     end
-
+    
     currencyCode = currencyCode:upper()
     decimalPlaces = decimalPlaces or PCD.preferences.decimalPlaces or 2
-
-    local symbol = PCD:GetCurrencySymbol(currencyCode)
-
-    -- Default symbol positions based on currency
+    
+    local symbol = API.GetCurrencySymbol(currencyCode)
+    
     if not symbolPosition then
-        -- These currencies typically have symbol after the amount
-        local afterSymbolCurrencies = {
-            EUR = true,
-            SEK = true,
-            NOK = true,
-            DKK = true,
-            PLN = true,
-            CZK = true
-        }
-
-        symbolPosition = afterSymbolCurrencies[currencyCode] and "after" or "before"
+        symbolPosition = PCD.Constants.SUFFIX_CURRENCIES[currencyCode] and "after" or "before"
     end
-
-    -- Format the number with proper decimals
+    
     local formattedNumber = string.format("%." .. decimalPlaces .. "f", amount)
-
-    -- Add the symbol
-    if symbolPosition == "before" then
-        return symbol .. formattedNumber
-    else
-        return formattedNumber .. symbol
-    end
+    
+    return symbolPosition == "before" and (symbol .. formattedNumber) or (formattedNumber .. symbol)
 end
+
+function API.ClearCache()
+    conversionCache = {}
+    cacheTimestamps = {}
+end
+
+-- Compatibility layer
+function PCD:GetExchangeRate(...)
+    return API.GetExchangeRate(...)
+end
+
+function PCD:ConvertCurrency(...)
+    return API.ConvertCurrency(...)
+end
+
+function PCD:GetAvailableCurrencies()
+    return API.GetAvailableCurrencies()
+end
+
+function PCD:GetLastUpdated()
+    return API.GetLastUpdated()
+end
+
+function PCD:GetCurrencySymbol(...)
+    return API.GetCurrencySymbol(...)
+end
+
+function PCD:FormatCurrency(...)
+    return API.FormatCurrency(...)
+end
+
+return API

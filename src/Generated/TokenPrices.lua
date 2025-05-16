@@ -1,5 +1,10 @@
--- Auto-generated token price data
--- Last updated: 2025-05-15
+--[[
+    PeaversCurrencyData
+    Copyright (C) 2024 Peavers
+    
+    Auto-generated WoW token price data
+    Last updated: 2025-05-15
+--]]
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 

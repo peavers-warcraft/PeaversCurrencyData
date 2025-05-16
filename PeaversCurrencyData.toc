@@ -1,17 +1,22 @@
 ## Interface: 110105
-## Title: |cff3abdf7Peavers|rCurrencyData
-## Notes: Real world currency and WoW token price updated hourly for addon use
-## IconTexture: Interface\AddOns\PeaversCurrencyData\src\Media\Icon.tga
+## Title: |cFF33FF99Peavers|rCurrencyData
+## Notes: Real-time currency exchange rates and WoW token prices
 ## Author: Peavers
 ## Version: 1.0.1
-## X-Curse-Project-ID: 1266517
+## SavedVariables: PeaversCurrencyDataDB
+## IconTexture: Interface\AddOns\PeaversCurrencyData\src\Media\Icon.tga
 ## Category-enUS: Peavers
+## X-Category: Gold Farm/Economy
+## X-Website: https://peavers.io
+## X-Curse-Project-ID: 1266517
 
 # Generated data files
 src/Generated/CurrencyRates.lua
 src/Generated/TokenPrices.lua
 
-# Core functionality
+# Core modules
+src/Core/Constants.lua
+src/Core/Utils.lua
 src/Core/Init.lua
 src/Core/Currency.lua
 src/Core/API.lua

@@ -1,61 +1,118 @@
 # PeaversCurrencyData
 
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/peavers/PeaversCurrencyData)](https://github.com/peavers/PeaversCurrencyData/commits/master) [![Last commit](https://img.shields.io/github/last-commit/peavers/PeaversCurrencyData)](https://github.com/peavers/PeaversCurrencyData/master)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/peavers/PeaversCurrencyData)](https://github.com/peavers/PeaversCurrencyData/commits/master)
+[![Last commit](https://img.shields.io/github/last-commit/peavers/PeaversCurrencyData)](https://github.com/peavers/PeaversCurrencyData/master)
 
-**A World of Warcraft addon that provides real-time currency exchange rates and WoW gold conversion directly in-game.**
-
-### New!
-Check out [peavers.io](https://peavers.io) and [bootstrap.peavers.io](https://bootstrap.peavers.io) for all my WoW addons and support.
+**Real-time currency exchange rates and WoW token prices for World of Warcraft**
 
 ## Overview
 
-PeaversCurrencyData delivers up-to-date exchange rates for major world currencies and WoW token prices across all regions. This addon helps players understand the real-world value of their gold and easily convert between different currencies, making it perfect for gold farmers, traders, and anyone curious about the economics of Azeroth.
+PeaversCurrencyData provides up-to-date exchange rates for major world currencies and WoW token prices across all regions. This addon helps players understand the real-world value of their gold and easily convert between different currencies.
 
 ## Features
 
-- **Daily Updated Exchange Rates**: Automatically fetches the latest currency exchange rates for 12 major currencies
-- **WoW Token Price Tracking**: Monitors token prices across all regions (US, EU, KR, TW)
-- **Gold Value Conversion**: Instantly see what your gold is worth in real-world currency
-- **Currency Conversion**: Convert between any supported currencies with accurate exchange rates
-- **In-Game Commands**: Simple slash commands for all conversions and information
-- **Chat Integration**: Share conversion results with others through the chat channel
-- **Centralized API**: Clean, well-documented API for developers to integrate with other addons
+- 📈 **Daily Updated Exchange Rates**: Automatically fetches latest currency exchange rates for 12 major currencies
+- 🪙 **WoW Token Price Tracking**: Monitors token prices across all regions (US, EU, KR, TW)
+- 💰 **Gold Value Conversion**: Instantly see what your gold is worth in real-world currency
+- 💱 **Currency Conversion**: Convert between any supported currencies with accurate exchange rates
+- ⚡ **Performance Optimized**: Intelligent caching system reduces calculation overhead
+- 🎨 **Clean Interface**: Simple slash commands with colorized output
+- 🔧 **Developer Friendly**: Well-documented API for integration with other addons
 
 ## Installation
 
-1. Download from the repository or use your favorite addon manager
+### Curse/WowUp
+1. Search for "PeaversCurrencyData" in your addon manager
+2. Click Install
+
+### Manual Installation
+1. Download the latest release from GitHub
 2. Extract to your `World of Warcraft/_retail_/Interface/AddOns/` folder
-3. Ensure your folder structure is `Interface\AddOns\PeaversCurrencyData\PeaversCurrencyData.toc`
-4. Reload your UI
+3. Ensure folder structure is `AddOns/PeaversCurrencyData/PeaversCurrencyData.toc`
+4. Restart WoW or type `/reload`
 
 ## Usage
 
-1. Use `/pcd` or `/peaverscurrency` to access commands
-2. For basic gold value information: `/pcd goldvalue 1000`
-3. For token prices across regions: `/pcd token`
-4. To convert between currencies: `/pcd convert 10 USD EUR`
-5. To share results in chat: `/pcd say goldvalue 1000`
+The addon uses `/pcd` or `/peaverscurrency` commands:
 
-## Configuration
-
-- `/pcd default [currency]` - Set your default currency (e.g., USD, EUR, GBP)
-- `/pcd region [region]` - Set your default region (US, EU, KR, TW)
-- `/pcd info` - Display current addon settings and data age
-- `/pcd help` - List all available commands
-
-### Available Commands
+### Basic Commands
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| `goldvalue` | Convert gold to real currency | `/pcd goldvalue 1000 USD` |
-| `money` | Convert real currency to gold | `/pcd money 10 USD US` |
-| `convert` | Convert between currencies | `/pcd convert 10 USD EUR` |
-| `token` | Show token prices | `/pcd token` |
-| `list` | List available currencies | `/pcd list` |
-| `say` | Share results in chat | `/pcd say goldvalue 1000` |
+| `/pcd help` | Show all available commands | |
+| `/pcd goldvalue [amount]` | Convert gold to your default currency | `/pcd goldvalue 1000` |
+| `/pcd money [amount] [currency]` | Convert real money to gold | `/pcd money 10 USD` |
+| `/pcd convert [amount] [from] [to]` | Convert between currencies | `/pcd convert 10 USD EUR` |
+| `/pcd token` | Show token prices across all regions | |
+| `/pcd list` | List all supported currencies | |
 
-## Support & Feedback
+### Configuration
 
-If you encounter any issues with the addon or have ideas for improvement, please submit them through the [repository's issue tracker](https://github.com/peavers/PeaversCurrencyData/issues). Your feedback helps make this addon more useful for the WoW community.
+- `/pcd default [currency]` - Set your default currency (e.g., USD, EUR, GBP)
+- `/pcd region [region]` - Set your default region (US, EU, KR, TW)
+- `/pcd info` - Show current settings and data age
+
+### Sharing Results
+
+Add `--say` to any command to share the result in chat:
+```
+/pcd goldvalue 10000 --say
+```
+
+## Supported Currencies
+
+- USD - US Dollar
+- EUR - Euro  
+- GBP - British Pound
+- JPY - Japanese Yen
+- CAD - Canadian Dollar
+- AUD - Australian Dollar
+- CHF - Swiss Franc
+- CNY - Chinese Yuan
+- HKD - Hong Kong Dollar
+- NZD - New Zealand Dollar
+- KRW - South Korean Won
+- TWD - Taiwan Dollar
+
+## API for Developers
+
+PeaversCurrencyData provides a clean API for integration:
+
+```lua
+-- Convert currency
+local euros = PeaversCurrencyData:ConvertCurrency(100, "USD", "EUR")
+
+-- Get gold value in real currency
+local dollars = PeaversCurrencyData:GoldToCurrency(10000, "US", "USD")
+
+-- Convert real currency to gold
+local gold = PeaversCurrencyData:CurrencyToGold(20, "USD", "US")
+
+-- Get token data for a region
+local tokenData = PeaversCurrencyData:GetTokenData("US")
+```
+
+See the [API Documentation](https://github.com/peavers/PeaversCurrencyData/wiki/API) for complete details.
+
+## Data Sources
+
+- Currency exchange rates: [Fawaz Ahmed Currency API](https://github.com/fawazahmed0/currency-api)
+- WoW token prices: Official Blizzard API
+
+## Support
+
+- 🐛 Report bugs: [GitHub Issues](https://github.com/peavers/PeaversCurrencyData/issues)
+- 💬 Get help: [Peavers Discord](https://discord.gg/peavers)
+- 🌐 More addons: [peavers.io](https://peavers.io)
+
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) before submitting PRs.
+
+## License
+
+Copyright © 2024 Peavers. All rights reserved.
+
+---
 
 *"Know thy gold's worth, and thou shalt trade more wisely."*

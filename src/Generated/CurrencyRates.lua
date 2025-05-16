@@ -1,5 +1,10 @@
--- Auto-generated currency exchange rates
--- Last updated: 2025-05-16
+--[[
+    PeaversCurrencyData
+    Copyright (C) 2024 Peavers
+    
+    Auto-generated currency exchange rates
+    Last updated: 2025-05-16
+--]]
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {

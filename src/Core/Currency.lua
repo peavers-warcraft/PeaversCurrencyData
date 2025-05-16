@@ -1,94 +1,76 @@
--- PeaversCurrencyData/src/Core/Currency.lua
-local addonName, addon = ...
+--[[
+    PeaversCurrencyData
+    Copyright (C) 2024 Peavers
+    
+    WoW currency formatting and conversion
+--]]
 
--- Initialize addon namespace
+local _, addon = ...
+
 PeaversCurrencyData = PeaversCurrencyData or {}
 local PCD = PeaversCurrencyData
 
--- Constants for WoW currency conversion
-PCD.COPPER_PER_SILVER = 100
-PCD.SILVER_PER_GOLD = 100
-PCD.COPPER_PER_GOLD = PCD.COPPER_PER_SILVER * PCD.SILVER_PER_GOLD -- 10000
+local Currency = {}
+PCD.Currency = Currency
 
---[[
-    Converts copper to gold
-    @param copper Amount in copper
-    @return Amount in gold (float)
-]]
+function Currency.CopperToGold(copper)
+    return copper / PCD.Constants.COPPER_PER_GOLD
+end
+
+function Currency.GoldToCopper(gold)
+    return PCD.Utils.Round(gold * PCD.Constants.COPPER_PER_GOLD)
+end
+
+function Currency.FormatWoWCurrency(goldAmount, includeIcons, colorize)
+    if not goldAmount then return "0g" end
+    
+    includeIcons = includeIcons ~= false
+    colorize = colorize ~= false
+    
+    local totalCopper = Currency.GoldToCopper(goldAmount)
+    
+    local copper = totalCopper % PCD.Constants.COPPER_PER_SILVER
+    local totalSilver = math.floor(totalCopper / PCD.Constants.COPPER_PER_SILVER)
+    local silver = totalSilver % PCD.Constants.SILVER_PER_GOLD
+    local gold = math.floor(totalSilver / PCD.Constants.SILVER_PER_GOLD)
+    
+    if not includeIcons then
+        local parts = {}
+        if gold > 0 then table.insert(parts, gold .. "g") end
+        if silver > 0 then table.insert(parts, silver .. "s") end
+        if copper > 0 or #parts == 0 then table.insert(parts, copper .. "c") end
+        return table.concat(parts, " ")
+    end
+    
+    local result = {}
+    
+    if gold > 0 then
+        local goldStr = colorize and (PCD.Constants.GOLD_COLOR .. gold .. "|r") or tostring(gold)
+        table.insert(result, goldStr .. PCD.Constants.GOLD_ICON)
+    end
+    
+    if silver > 0 or gold > 0 then
+        local silverStr = colorize and (PCD.Constants.SILVER_COLOR .. silver .. "|r") or tostring(silver)
+        table.insert(result, silverStr .. PCD.Constants.SILVER_ICON)
+    end
+    
+    local copperStr = colorize and (PCD.Constants.COPPER_COLOR .. copper .. "|r") or tostring(copper)
+    table.insert(result, copperStr .. PCD.Constants.COPPER_ICON)
+    
+    return table.concat(result, " ")
+end
+
+-- Compatibility layer
 function PCD:CopperToGold(copper)
-	return copper / PCD.COPPER_PER_GOLD
+    return Currency.CopperToGold(copper)
 end
 
---[[
-    Converts gold to copper
-    @param gold Amount in gold
-    @return Amount in copper (integer)
-]]
 function PCD:GoldToCopper(gold)
-	return math.floor(gold * PCD.COPPER_PER_GOLD + 0.5)
+    return Currency.GoldToCopper(gold)
 end
 
---[[
-    Formats a gold amount with proper WoW formatting
-    @param goldAmount The amount of gold (can be fractional)
-    @param includeIcons (optional) Whether to include gold/silver/copper icons (default: true)
-    @param colorize (optional) Whether to colorize the output (default: true)
-    @return A formatted string (e.g., "1g 25s 10c" or "|cFFFFD70025|r|TInterface\\MoneyFrame\\UI-GoldIcon:12:12:2:0|t")
-]]
 function PCD:FormatWoWCurrency(goldAmount, includeIcons, colorize)
-	if not goldAmount then
-		return "0g"
-	end
-
-	-- Default parameters
-	if includeIcons == nil then includeIcons = true end
-	if colorize == nil then colorize = true end
-
-	-- Convert to copper for precision
-	local totalCopper = PCD:GoldToCopper(goldAmount)
-
-	-- Split into gold, silver, copper
-	local copper = totalCopper % PCD.COPPER_PER_SILVER
-	local totalSilver = math.floor(totalCopper / PCD.COPPER_PER_SILVER)
-	local silver = totalSilver % PCD.SILVER_PER_GOLD
-	local gold = math.floor(totalSilver / PCD.SILVER_PER_GOLD)
-
-	-- Format without icons
-	if not includeIcons then
-		local result = ""
-		if gold > 0 then result = result .. gold .. "g " end
-		if silver > 0 or gold > 0 then result = result .. silver .. "s " end
-		result = result .. copper .. "c"
-		return result
-	end
-
-	-- Format with icons
-	local result = ""
-
-	-- Gold
-	if gold > 0 then
-		if colorize then
-			result = result .. "|cFFFFD700" .. gold .. "|r|TInterface\\MoneyFrame\\UI-GoldIcon:12:12:2:0|t "
-		else
-			result = result .. gold .. "|TInterface\\MoneyFrame\\UI-GoldIcon:12:12:2:0|t "
-		end
-	end
-
-	-- Silver
-	if silver > 0 or gold > 0 then
-		if colorize then
-			result = result .. "|cFFC0C0C0" .. silver .. "|r|TInterface\\MoneyFrame\\UI-SilverIcon:12:12:2:0|t "
-		else
-			result = result .. silver .. "|TInterface\\MoneyFrame\\UI-SilverIcon:12:12:2:0|t "
-		end
-	end
-
-	-- Copper
-	if colorize then
-		result = result .. "|cFFB87333" .. copper .. "|r|TInterface\\MoneyFrame\\UI-CopperIcon:12:12:2:0|t"
-	else
-		result = result .. copper .. "|TInterface\\MoneyFrame\\UI-CopperIcon:12:12:2:0|t"
-	end
-
-	return result
+    return Currency.FormatWoWCurrency(goldAmount, includeIcons, colorize)
 end
+
+return Currency

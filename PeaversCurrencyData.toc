@@ -1,5 +1,5 @@
 ## Interface: 110105
-## Title: |cFF33FF99Peavers|rCurrencyData
+## Title: |cff3abdf7Peavers|rCurrencyData
 ## Notes: Real-time currency exchange rates and WoW token prices
 ## Author: Peavers
 ## Version: 1.0.13

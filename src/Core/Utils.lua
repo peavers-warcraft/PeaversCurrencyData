@@ -1,10 +1,3 @@
---[[
-    PeaversCurrencyData
-    Copyright (C) 2024 Peavers
-    
-    Utility functions and helpers
---]]
-
 local _, addon = ...
 local PCD = PeaversCurrencyData
 
@@ -121,7 +114,7 @@ function Utils.RegisterEvents(frame, events)
     end
 end
 
-function Utils.UnregisterEvents(frame, events) 
+function Utils.UnregisterEvents(frame, events)
     for _, event in ipairs(events) do
         frame:UnregisterEvent(event)
     end

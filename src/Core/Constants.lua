@@ -1,10 +1,3 @@
---[[
-    PeaversCurrencyData
-    Copyright (C) 2024 Peavers
-    
-    Constants and configuration values
---]]
-
 local _, addon = ...
 local PCD = PeaversCurrencyData
 
@@ -54,7 +47,7 @@ Constants.SUFFIX_CURRENCIES = {
 
 -- Major currencies
 Constants.MAJOR_CURRENCIES = {
-    "USD", "EUR", "GBP", "JPY", "CAD", "AUD", 
+	"USD", "EUR", "GBP", "JPY", "CAD", "AUD",
     "CHF", "CNY", "HKD", "NZD", "KRW", "TWD"
 }
 

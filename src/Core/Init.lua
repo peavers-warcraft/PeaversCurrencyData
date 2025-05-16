@@ -1,10 +1,3 @@
---[[
-    PeaversCurrencyData
-    Copyright (C) 2024 Peavers
-    
-    Main initialization and slash command handling
---]]
-
 local addonName, addon = ...
 
 PeaversCurrencyData = PeaversCurrencyData or {}
@@ -15,7 +8,7 @@ local commandHandlers = {}
 
 local function LoadPreferences()
     PeaversCurrencyDataDB = PeaversCurrencyDataDB or {}
-    
+
     if PeaversCurrencyDataDB.preferences then
         PCD.preferences = PeaversCurrencyDataDB.preferences
     else
@@ -29,9 +22,9 @@ end
 
 local function OnAddonLoaded(name)
     if name ~= addonName then return end
-    
+
     LoadPreferences()
-    
+
     print(PCD.Constants.ADDON_PREFIX .. ": Loaded successfully. Currency data from " ..
         (PCD.CurrencyRates and PCD.CurrencyRates.lastUpdated or "unknown date"))
 end
@@ -70,17 +63,17 @@ commandHandlers.convert = function(args, useChat)
     amount = tonumber(amount)
     from = PCD.Utils.ToUpper(from)
     to = PCD.Utils.ToUpper(to)
-    
+
     if not amount or not from or not to then
         OutputText("Usage: /pcd convert [amount] [from] [to]", useChat)
         return
     end
-    
+
     local result = PCD:ConvertCurrency(amount, from, to)
     if result then
         local fromSymbol = PCD.CurrencyRates.symbols[from] or ""
         local toSymbol = PCD.CurrencyRates.symbols[to] or ""
-        OutputText(string.format("%s%s %s = %s%s %s", 
+        OutputText(string.format("%s%s %s = %s%s %s",
             fromSymbol, amount, from, toSymbol, result, to), useChat)
     else
         OutputText("Conversion failed. Make sure the currencies are valid.", useChat)
@@ -93,18 +86,18 @@ commandHandlers.goldvalue = function(args, useChat)
         OutputText("Example: /pcd goldvalue 1000 EUR", useChat)
         return
     end
-    
+
     local amount, currency, region = strsplit(" ", args, 3)
     amount = tonumber(amount)
-    
+
     if not amount then
         OutputText("Invalid amount. Usage: /pcd goldvalue [amount] [currency] [region]", useChat)
         return
     end
-    
+
     currency = PCD.Utils.ToUpper(currency) or PCD.preferences.defaultCurrency
     region = PCD.Utils.ToUpper(region) or PCD.preferences.defaultRegion
-    
+
     local result = PCD:GoldToCurrency(amount, region, currency)
     if result then
         local symbol = PCD.CurrencyRates.symbols[currency] or ""
@@ -126,18 +119,18 @@ commandHandlers.money = function(args, useChat)
         OutputText("Example: /pcd money 10 USD US", useChat)
         return
     end
-    
+
     local amount, currency, region = strsplit(" ", args, 3)
     amount = tonumber(amount)
-    
+
     if not amount then
         OutputText("Invalid amount. Usage: /pcd money [amount] [currency] [region]", useChat)
         return
     end
-    
+
     currency = PCD.Utils.ToUpper(currency) or PCD.preferences.defaultCurrency
     region = PCD.Utils.ToUpper(region) or PCD.preferences.defaultRegion
-    
+
     local result = PCD:CurrencyToGold(amount, currency, region)
     if result then
         local symbol = PCD.CurrencyRates.symbols[currency] or ""
@@ -163,7 +156,7 @@ commandHandlers.token = function(args, useChat)
             symbol,
             data.realPrice,
             data.currency), useChat)
-        
+
         local goldValue = data.goldValue
         OutputText(string.format("  1 gold = %s%s %s",
             symbol,
@@ -176,7 +169,7 @@ commandHandlers.list = function(args, useChat)
     OutputText(PCD.Constants.ADDON_PREFIX .. " Available Currencies:", useChat)
     local currencies = PCD:GetAvailableCurrencies()
     table.sort(currencies)
-    
+
     for i, currency in ipairs(currencies) do
         local symbol = PCD.CurrencyRates.symbols[currency] or ""
         OutputText(string.format("  %s (%s)", currency, symbol), useChat)
@@ -209,18 +202,18 @@ local function HandleSlashCommand(msg)
         useChat = true
         msg = PCD.Utils.Trim(msg:gsub("--say", ""))
     end
-    
+
     local cmd, args = strsplit(" ", msg, 2)
     cmd = cmd:lower()
-    
+
     -- Check for empty command
     if cmd == "" then
         cmd = "help"
     end
-    
+
     -- Check for alias
     cmd = PCD.Constants.COMMAND_ALIASES[cmd] or cmd
-    
+
     -- Execute handler
     local handler = commandHandlers[cmd]
     if handler then

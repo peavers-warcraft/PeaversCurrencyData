@@ -1,8 +1,5 @@
 # PeaversCurrencyData
 
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/peavers/PeaversCurrencyData)](https://github.com/peavers/PeaversCurrencyData/commits/master)
-[![Last commit](https://img.shields.io/github/last-commit/peavers/PeaversCurrencyData)](https://github.com/peavers/PeaversCurrencyData/master)
-
 **Real-time currency exchange rates and WoW token prices for World of Warcraft**
 
 ## Overview
@@ -62,7 +59,7 @@ Add `--say` to any command to share the result in chat:
 ## Supported Currencies
 
 - USD - US Dollar
-- EUR - Euro  
+- EUR - Euro
 - GBP - British Pound
 - JPY - Japanese Yen
 - CAD - Canadian Dollar

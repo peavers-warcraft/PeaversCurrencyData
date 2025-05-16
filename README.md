@@ -89,27 +89,7 @@ local gold = PeaversCurrencyData:CurrencyToGold(20, "USD", "US")
 local tokenData = PeaversCurrencyData:GetTokenData("US")
 ```
 
-See the [API Documentation](https://github.com/peavers/PeaversCurrencyData/wiki/API) for complete details.
-
 ## Data Sources
 
 - Currency exchange rates: [Fawaz Ahmed Currency API](https://github.com/fawazahmed0/currency-api)
 - WoW token prices: Official Blizzard API
-
-## Support
-
-- 🐛 Report bugs: [GitHub Issues](https://github.com/peavers/PeaversCurrencyData/issues)
-- 💬 Get help: [Peavers Discord](https://discord.gg/peavers)
-- 🌐 More addons: [peavers.io](https://peavers.io)
-
-## Contributing
-
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) before submitting PRs.
-
-## License
-
-Copyright © 2024 Peavers. All rights reserved.
-
----
-
-*"Know thy gold's worth, and thou shalt trade more wisely."*

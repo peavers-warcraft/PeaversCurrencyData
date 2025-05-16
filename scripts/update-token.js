@@ -12,8 +12,8 @@ const querystring = require('querystring');
 const OUTPUT_FILE = path.join(__dirname, '..', 'src', 'Generated', 'TokenPrices.lua');
 
 // Blizzard API credentials (to be filled in)
-const CLIENT_ID = process.env.BLIZZARD_CLIENT_ID || 'a53f7844bedf4792a91b569e46da38f2';
-const CLIENT_SECRET = process.env.BLIZZARD_CLIENT_SECRET || 'bHYResc8OFdD21BWcnLky8nqBx3i0oRT';
+const CLIENT_ID = process.env.BLIZZARD_CLIENT_ID || '';
+const CLIENT_SECRET = process.env.BLIZZARD_CLIENT_SECRET || '';
 
 // Token prices in real currency (fixed values set by Blizzard)
 const TOKEN_REAL_PRICES = {

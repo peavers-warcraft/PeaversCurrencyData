@@ -3,7 +3,7 @@
 ## Notes: Real world currency and WoW token price updated hourly for addon use
 ## IconTexture: Interface\AddOns\PeaversCurrencyData\src\Media\Icon.tga
 ## Author: Peavers
-## Version: 1.0.0
+## Version: 1.0.1
 ## X-Curse-Project-ID: 1266517
 ## Category-enUS: Peavers
 

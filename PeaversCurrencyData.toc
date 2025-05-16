@@ -1,9 +1,11 @@
-## Interface: 100200
-## Title: Peavers Currency Data
-## Notes: Provides real-world currency exchange rates and WoW gold conversion
+## Interface: 110105
+## Title: |cff3abdf7Peavers|rCurrencyData
+## Notes: Real world currency and WoW token price updated hourly for addon use
+## IconTexture: Interface\AddOns\PeaversCurrencyData\src\Media\Icon.tga
 ## Author: Peavers
-## Version: 1.0
-## SavedVariables: PeaversCurrencyDataDB
+## Version: 1.0.0
+## X-Curse-Project-ID: 1266517
+## Category-enUS: Peavers
 
 # Generated data files
 src/Generated/CurrencyRates.lua

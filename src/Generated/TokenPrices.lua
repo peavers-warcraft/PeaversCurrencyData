@@ -9,10 +9,10 @@ PeaversCurrencyData.TokenPrices = {
 
   regions = {
     US = {
-      goldPrice = 265529,  -- Gold cost of a token
+      goldPrice = 263954,  -- Gold cost of a token
       realPrice = 20,      -- USD cost of a token
       currency = "USD",
-      goldValue = 0.0000753213, -- USD value of 1 gold
+      goldValue = 0.0000757708, -- USD value of 1 gold
     },
     EU = {
       goldPrice = 340041,  -- Gold cost of a token

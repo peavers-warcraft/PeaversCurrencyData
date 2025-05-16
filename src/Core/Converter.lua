@@ -40,9 +40,17 @@ function PCD:GoldToCurrency(goldAmount, region, currency, roundDecimals)
         value = PCD:ConvertCurrency(value, tokenData.currency, currency)
     end
 
-    -- Round if requested
+    -- Round if requested, but only if it won't round to zero
     if roundDecimals or PCD.preferences.decimalPlaces then
         local decimals = roundDecimals or PCD.preferences.decimalPlaces
+
+        -- For very small values, use a higher precision to avoid rounding to zero
+        if value > 0 and value < 10^(-decimals) then
+            -- Find the first non-zero digit and use that precision
+            local digits = math.ceil(math.abs(math.log10(value))) + 2
+            decimals = math.max(decimals, digits)
+        end
+
         local mult = 10 ^ decimals
         value = math.floor(value * mult + 0.5) / mult
     end
@@ -149,65 +157,4 @@ function PCD:GetTokenData(region)
     end
 
     return PCD.TokenPrices.regions[region]
-end
-
---[[
-    Formats a gold amount with proper WoW formatting
-    @param amount The amount of gold
-    @param includeIcons (optional) Whether to include gold/silver/copper icons (default: true)
-    @param colorize (optional) Whether to colorize the output (default: true)
-    @return A formatted string (e.g., "1g 25s 10c" or "|cFFFFD70025|r|TInterface\\MoneyFrame\\UI-GoldIcon:12:12:2:0|t")
-]]
-function PCD:FormatWoWCurrency(amount, includeIcons, colorize)
-    if not amount then
-        return "0g"
-    end
-
-    -- Default parameters
-    if includeIcons == nil then includeIcons = true end
-    if colorize == nil then colorize = true end
-
-    -- Split into gold, silver, copper
-    local gold = math.floor(amount)
-    local silver = math.floor((amount - gold) * 100)
-    local copper = math.floor((((amount - gold) * 100) - silver) * 100)
-
-    -- Format without icons
-    if not includeIcons then
-        local result = ""
-        if gold > 0 then result = result .. gold .. "g " end
-        if silver > 0 or gold > 0 then result = result .. silver .. "s " end
-        result = result .. copper .. "c"
-        return result
-    end
-
-    -- Format with icons
-    local result = ""
-
-    -- Gold
-    if gold > 0 then
-        if colorize then
-            result = result .. "|cFFFFD700" .. gold .. "|r|TInterface\\MoneyFrame\\UI-GoldIcon:12:12:2:0|t "
-        else
-            result = result .. gold .. "|TInterface\\MoneyFrame\\UI-GoldIcon:12:12:2:0|t "
-        end
-    end
-
-    -- Silver
-    if silver > 0 or gold > 0 then
-        if colorize then
-            result = result .. "|cFFC0C0C0" .. silver .. "|r|TInterface\\MoneyFrame\\UI-SilverIcon:12:12:2:0|t "
-        else
-            result = result .. silver .. "|TInterface\\MoneyFrame\\UI-SilverIcon:12:12:2:0|t "
-        end
-    end
-
-    -- Copper
-    if colorize then
-        result = result .. "|cFFB87333" .. copper .. "|r|TInterface\\MoneyFrame\\UI-CopperIcon:12:12:2:0|t"
-    else
-        result = result .. copper .. "|TInterface\\MoneyFrame\\UI-CopperIcon:12:12:2:0|t"
-    end
-
-    return result
 end

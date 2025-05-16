@@ -11,5 +11,6 @@ src/Generated/TokenPrices.lua
 
 # Core functionality
 src/Core/Init.lua
+src/Core/Currency.lua
 src/Core/API.lua
 src/Core/Converter.lua

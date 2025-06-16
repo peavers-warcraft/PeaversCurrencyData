@@ -93,3 +93,5 @@ local tokenData = PeaversCurrencyData:GetTokenData("US")
 
 - Currency exchange rates: [Fawaz Ahmed Currency API](https://github.com/fawazahmed0/currency-api)
 - WoW token prices: Official Blizzard API
+
+<!-- Workflow triggered: 2025-06-16T10:45:56.857749 -->

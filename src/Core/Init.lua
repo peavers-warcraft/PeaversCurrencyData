@@ -25,8 +25,6 @@ local function OnAddonLoaded(name)
 
     LoadPreferences()
 
-    print(PCD.Constants.ADDON_PREFIX .. ": Loaded successfully. Currency data from " ..
-        (PCD.CurrencyRates and PCD.CurrencyRates.lastUpdated or "unknown date"))
 end
 
 local function OutputText(text, useChat)

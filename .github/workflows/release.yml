@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   update-version-and-tag:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       new_version: ${{ steps.get_version.outputs.new_version }}
       new_tag: ${{ steps.create_tag.outputs.new_tag }}

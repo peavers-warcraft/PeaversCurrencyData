@@ -118,20 +118,7 @@ PeaversCurrencyData.CurrencyRates = {
       TWD = 4.17326268,
       USD = 0.13920279,
     },
-    HKD = {
-      AUD = 0.19537494,
-      CAD = 0.17554496,
-      CHF = 0.10277292,
-      CNY = 0.91514794,
-      EUR = 0.10909391,
-      GBP = 0.094372096,
-      HKD = 1,
-      JPY = 18.8625432,
-      KRW = 176.50148765,
-      NZD = 0.21421497,
-      TWD = 3.81915274,
-      USD = 0.12739115,
-    },
+    HKD = {}, -- Failed to fetch
     NZD = {
       AUD = 0.91205079,
       CAD = 0.81948036,

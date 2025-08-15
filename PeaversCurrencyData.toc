@@ -1,4 +1,4 @@
-## Interface: 110107
+## Interface: 110200, 110205
 ## Title: |cff3abdf7Peavers|rCurrencyData
 ## Notes: Real-time currency exchange rates and WoW token prices
 ## Author: Peavers

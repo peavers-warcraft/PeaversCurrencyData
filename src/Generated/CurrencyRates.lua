@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2025-08-16
+-- Last updated: 2025-08-17
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2025-08-16",
+  lastUpdated = "2025-08-17",
 
   rates = {
     USD = {
@@ -133,18 +133,18 @@ PeaversCurrencyData.CurrencyRates = {
       USD = 0.12779558,
     },
     NZD = {
-      AUD = 0.91124503,
-      CAD = 0.81756009,
-      CHF = 0.47794375,
-      CNY = 4.25119141,
-      EUR = 0.50795004,
-      GBP = 0.43729347,
-      HKD = 4.64330282,
-      JPY = 87.20519273,
-      KRW = 822.85392399,
+      AUD = 0.91027503,
+      CAD = 0.81846237,
+      CHF = 0.47765799,
+      CNY = 4.253507,
+      EUR = 0.50616871,
+      GBP = 0.43723006,
+      HKD = 4.6344434,
+      JPY = 87.06457197,
+      KRW = 822.41117431,
       NZD = 1,
-      TWD = 17.78543485,
-      USD = 0.59205442,
+      TWD = 17.78745834,
+      USD = 0.59226139,
     },
     KRW = {
       AUD = 0.0011068369,

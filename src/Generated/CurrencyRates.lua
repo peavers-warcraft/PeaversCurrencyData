@@ -76,20 +76,7 @@ PeaversCurrencyData.CurrencyRates = {
       TWD = 21.89714653,
       USD = 0.71972077,
     },
-    AUD = {
-      AUD = 1,
-      CAD = 0.91483255,
-      CHF = 0.52351405,
-      CNY = 4.70170581,
-      EUR = 0.560022,
-      GBP = 0.48910847,
-      HKD = 5.1384374,
-      JPY = 97.65731266,
-      KRW = 921.17223567,
-      NZD = 1.12808824,
-      TWD = 20.02736394,
-      USD = 0.66088206,
-    },
+    AUD = {}, -- Failed to fetch
     CHF = {
       AUD = 1.90992352,
       CAD = 1.74750027,
@@ -104,20 +91,7 @@ PeaversCurrencyData.CurrencyRates = {
       TWD = 38.26526948,
       USD = 1.25771224,
     },
-    CNY = {
-      AUD = 0.21299346,
-      CAD = 0.19488012,
-      CHF = 0.11151936,
-      CNY = 1,
-      EUR = 0.11944814,
-      GBP = 0.10427666,
-      HKD = 1.09111231,
-      JPY = 20.87393911,
-      KRW = 196.50041168,
-      NZD = 0.24145905,
-      TWD = 4.26731853,
-      USD = 0.14025927,
-    },
+    CNY = {}, -- Failed to fetch
     HKD = {
       AUD = 0.19461169,
       CAD = 0.17803711,
@@ -132,20 +106,7 @@ PeaversCurrencyData.CurrencyRates = {
       TWD = 3.8975592,
       USD = 0.12861538,
     },
-    NZD = {
-      AUD = 0.88211004,
-      CAD = 0.80709386,
-      CHF = 0.46185621,
-      CNY = 4.14148893,
-      EUR = 0.49469317,
-      GBP = 0.43186065,
-      HKD = 4.51882956,
-      JPY = 86.44918773,
-      KRW = 813.80427956,
-      NZD = 1,
-      TWD = 17.67305245,
-      USD = 0.58088221,
-    },
+    NZD = {}, -- Failed to fetch
     KRW = {
       AUD = 0.0010839339,
       CAD = 0.00099175425,
@@ -160,20 +121,7 @@ PeaversCurrencyData.CurrencyRates = {
       TWD = 0.021716588,
       USD = 0.00071378614,
     },
-    TWD = {
-      AUD = 0.049912716,
-      CAD = 0.045668051,
-      CHF = 0.026133358,
-      CNY = 0.2343392,
-      EUR = 0.027991382,
-      GBP = 0.02443611,
-      HKD = 0.25569038,
-      JPY = 4.89158214,
-      KRW = 46.0477488,
-      NZD = 0.056583321,
-      TWD = 1,
-      USD = 0.032868245,
-    },
+    TWD = {}, -- Failed to fetch
   },
 
   symbols = {

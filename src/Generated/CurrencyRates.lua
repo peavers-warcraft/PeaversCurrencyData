@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2025-09-26
+-- Last updated: 2025-09-27
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2025-09-26",
+  lastUpdated = "2025-09-27",
 
   rates = {
     USD = {

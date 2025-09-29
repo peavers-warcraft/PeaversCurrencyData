@@ -9,28 +9,28 @@ PeaversCurrencyData.TokenPrices = {
 
   regions = {
     US = {
-      goldPrice = 292249,  -- Gold cost of a token
+      goldPrice = 295577,  -- Gold cost of a token
       realPrice = 20,      -- USD cost of a token
       currency = "USD",
-      goldValue = 0.0000684348, -- USD value of 1 gold
+      goldValue = 0.0000676643, -- USD value of 1 gold
     },
     EU = {
-      goldPrice = 401429,  -- Gold cost of a token
+      goldPrice = 402629,  -- Gold cost of a token
       realPrice = 20,      -- EUR cost of a token
       currency = "EUR",
-      goldValue = 0.0000498220, -- EUR value of 1 gold
+      goldValue = 0.0000496735, -- EUR value of 1 gold
     },
     KR = {
-      goldPrice = 183761,  -- Gold cost of a token
+      goldPrice = 187272,  -- Gold cost of a token
       realPrice = 22000,      -- KRW cost of a token
       currency = "KRW",
-      goldValue = 0.1197207242, -- KRW value of 1 gold
+      goldValue = 0.1174761844, -- KRW value of 1 gold
     },
     TW = {
-      goldPrice = 620319,  -- Gold cost of a token
+      goldPrice = 618581,  -- Gold cost of a token
       realPrice = 500,      -- TWD cost of a token
       currency = "TWD",
-      goldValue = 0.0008060369, -- TWD value of 1 gold
+      goldValue = 0.0008083016, -- TWD value of 1 gold
     },
   }
 }

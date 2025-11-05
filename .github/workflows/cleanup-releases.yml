@@ -19,6 +19,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
+          set +e  # Don't exit on error, we'll handle errors manually
+
           echo "Fetching all releases..."
 
           # Get all releases sorted by creation date (newest first)
@@ -51,19 +53,19 @@ jobs:
               echo "Progress: Deleted $DELETED of $((TOTAL_RELEASES - 1)) releases..."
             fi
 
-            # Attempt to delete with retry logic
-            if gh api -X DELETE repos/${{ github.repository }}/releases/$RELEASE_ID 2>/dev/null; then
+            # Attempt to delete with full error output for first few
+            ERROR_OUTPUT=$(gh api -X DELETE repos/${{ github.repository }}/releases/$RELEASE_ID 2>&1)
+            EXIT_CODE=$?
+
+            if [ $EXIT_CODE -eq 0 ]; then
               ((DELETED++))
             else
-              echo "Failed to delete release ID: $RELEASE_ID (will retry)"
-              # Retry once after a short delay
-              sleep 1
-              if gh api -X DELETE repos/${{ github.repository }}/releases/$RELEASE_ID 2>/dev/null; then
-                ((DELETED++))
-              else
-                echo "Failed to delete release ID: $RELEASE_ID after retry"
-                ((FAILED++))
+              # Show detailed error for first 5 failures
+              if [ $FAILED -lt 5 ]; then
+                echo "Failed to delete release ID: $RELEASE_ID"
+                echo "Error: $ERROR_OUTPUT"
               fi
+              ((FAILED++))
             fi
 
             # Small delay to avoid rate limiting (every 10 deletions)
@@ -76,8 +78,11 @@ jobs:
           echo "Cleanup completed!"
           echo "Kept: 1 release"
           echo "Deleted: $DELETED releases"
-          if [ $FAILED -gt 0 ]; then
-            echo "Failed: $FAILED releases"
+          echo "Failed: $FAILED releases"
+          echo "============================================="
+
+          # Exit with error if too many failures
+          if [ $FAILED -gt 100 ]; then
+            echo "Too many failures, exiting with error"
             exit 1
           fi
-          echo "============================================="

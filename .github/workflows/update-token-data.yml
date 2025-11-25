@@ -53,6 +53,7 @@ jobs:
 
             # Push changes using the personal GitHub token
             git remote set-url origin https://x-access-token:${PERSONAL_ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+            git pull --rebase
             git push
             echo "Token data updated and pushed to repository."
           else

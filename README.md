@@ -1,5 +1,4 @@
 # PeaversCurrencyData
-
 **Real-time currency exchange rates and WoW token prices for World of Warcraft**
 
 ## Overview

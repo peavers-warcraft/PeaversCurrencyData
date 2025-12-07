@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2025-12-07T02:44:38.088880967Z
+-- Last updated: 2025-12-07T05:44:37.192200340Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2025-12-07T02:44:38.088880967Z",
+  lastUpdated = "2025-12-07T05:44:37.192200340Z",
 
   rates = {
     AUD = {
@@ -133,32 +133,32 @@ PeaversCurrencyData.CurrencyRates = {
       CNY = 7.07078603,
     },
     CAD = {
-      AUD = 1.08992567,
-      CHF = 0.58163664,
-      HKD = 5.63192531,
-      TWD = 22.63898138,
-      KRW = 1063.97773403,
-      JPY = 112.38523848,
-      EUR = 0.62137433,
-      GBP = 0.54217179,
+      AUD = 1.09041821,
+      CHF = 0.58211411,
+      HKD = 5.63436326,
+      TWD = 22.64523858,
+      KRW = 1066.40681975,
+      JPY = 112.40853464,
+      EUR = 0.62156457,
+      GBP = 0.54295381,
       CAD = 1,
-      USD = 0.72344695,
-      NZD = 1.25288129,
-      CNY = 5.11519349,
+      USD = 0.72376006,
+      NZD = 1.2529311,
+      CNY = 5.11755249,
     },
     NZD = {
-      AUD = 0.86993531,
-      CHF = 0.46423923,
-      HKD = 4.49517872,
-      TWD = 18.06953427,
-      KRW = 849.22469792,
-      JPY = 89.70142621,
-      EUR = 0.49595627,
-      GBP = 0.43273995,
-      CAD = 0.79816022,
-      USD = 0.57742657,
+      AUD = 0.87029384,
+      CHF = 0.46460185,
+      HKD = 4.49694582,
+      TWD = 18.07381001,
+      KRW = 851.12966168,
+      JPY = 89.71645369,
+      EUR = 0.49608839,
+      GBP = 0.4333469,
+      CAD = 0.79812849,
+      USD = 0.57765352,
       NZD = 1,
-      CNY = 4.08274394,
+      CNY = 4.08446443,
     },
     CNY = {
       AUD = 0.21307416,
@@ -177,9 +177,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    CHF = "Fr",
-    HKD = "HK$",
-    TWD = "NT$",
     EUR = "€",
     JPY = "¥",
     CNY = "¥",
@@ -189,5 +186,8 @@ PeaversCurrencyData.CurrencyRates = {
     USD = "$",
     CAD = "C$",
     KRW = "₩",
+    CHF = "Fr",
+    HKD = "HK$",
+    TWD = "NT$",
   }
 }

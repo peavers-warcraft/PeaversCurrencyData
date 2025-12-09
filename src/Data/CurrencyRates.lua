@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2025-12-09T05:44:37.221457949Z
+-- Last updated: 2025-12-09T08:44:37.319078333Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2025-12-09T05:44:37.221457949Z",
+  lastUpdated = "2025-12-09T08:44:37.319078333Z",
 
   rates = {
     AUD = {
@@ -21,18 +21,18 @@ PeaversCurrencyData.CurrencyRates = {
       CNY = 4.6967357,
     },
     CHF = {
-      AUD = 1.87299983,
+      AUD = 1.87186974,
       CHF = 1,
-      HKD = 9.68456163,
-      TWD = 38.856056,
-      KRW = 1828.63785467,
-      JPY = 192.79148302,
-      EUR = 1.06797939,
-      GBP = 0.93300572,
-      CAD = 1.72026041,
-      USD = 1.24443642,
-      NZD = 2.14963937,
-      CNY = 8.79698516,
+      HKD = 9.64895954,
+      TWD = 38.67023193,
+      KRW = 1822.81077054,
+      JPY = 193.24644974,
+      EUR = 1.06487799,
+      GBP = 0.93025739,
+      CAD = 1.71769419,
+      USD = 1.24027456,
+      NZD = 2.14762142,
+      CNY = 8.77001245,
     },
     HKD = {
       AUD = 0.19340058,
@@ -77,18 +77,18 @@ PeaversCurrencyData.CurrencyRates = {
       CNY = 0.0048106765,
     },
     JPY = {
-      AUD = 0.0097151586,
-      CHF = 0.0051869511,
-      HKD = 0.050233348,
-      TWD = 0.20154446,
-      KRW = 9.48505518,
+      AUD = 0.0096864379,
+      CHF = 0.0051747393,
+      HKD = 0.04993085,
+      TWD = 0.20010837,
+      KRW = 9.43257055,
       JPY = 1,
-      EUR = 0.0055395569,
-      GBP = 0.0048394551,
-      CAD = 0.0089229067,
-      USD = 0.0064548309,
-      NZD = 0.011150074,
-      CNY = 0.045629532,
+      EUR = 0.005510466,
+      GBP = 0.0048138395,
+      CAD = 0.0088886197,
+      USD = 0.0064180975,
+      NZD = 0.011113381,
+      CNY = 0.045382528,
     },
     EUR = {
       AUD = 1.75782555,
@@ -119,18 +119,18 @@ PeaversCurrencyData.CurrencyRates = {
       CNY = 9.42865086,
     },
     USD = {
-      AUD = 1.50509885,
-      CHF = 0.80357661,
-      HKD = 7.78228721,
-      TWD = 31.2238178,
-      KRW = 1469.45061,
-      JPY = 154.92272656,
-      EUR = 0.85820326,
-      GBP = 0.74974157,
-      CAD = 1.38236103,
+      AUD = 1.50923819,
+      CHF = 0.80627309,
+      HKD = 7.77969641,
+      TWD = 31.17876735,
+      KRW = 1469.68327044,
+      JPY = 155.80941195,
+      EUR = 0.85858246,
+      GBP = 0.7500415,
+      CAD = 1.3849306,
       USD = 1,
-      NZD = 1.72739992,
-      CNY = 7.06905152,
+      NZD = 1.73156936,
+      CNY = 7.07102502,
     },
     CAD = {
       AUD = 1.08975727,
@@ -177,6 +177,7 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
+    JPY = "¥",
     EUR = "€",
     TWD = "NT$",
     HKD = "HK$",
@@ -188,6 +189,5 @@ PeaversCurrencyData.CurrencyRates = {
     NZD = "NZ$",
     AUD = "A$",
     CNY = "¥",
-    JPY = "¥",
   }
 }

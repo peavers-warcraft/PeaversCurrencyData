@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2025-12-11T05:44:37.786005918Z
+-- Last updated: 2025-12-11T08:44:37.282338177Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2025-12-11T05:44:37.786005918Z",
+  lastUpdated = "2025-12-11T08:44:37.282338177Z",
 
   rates = {
     AUD = {
@@ -21,18 +21,18 @@ PeaversCurrencyData.CurrencyRates = {
       CNY = 4.68516173,
     },
     CHF = {
-      AUD = 1.87186974,
+      AUD = 1.88495509,
       CHF = 1,
-      HKD = 9.64895954,
-      TWD = 38.67023193,
-      KRW = 1822.81077054,
-      JPY = 193.24644974,
-      EUR = 1.06487799,
-      GBP = 0.93025739,
-      CAD = 1.71769419,
-      USD = 1.24027456,
-      NZD = 2.14762142,
-      CNY = 8.77001245,
+      HKD = 9.72630358,
+      TWD = 39.07844855,
+      KRW = 1841.50086158,
+      JPY = 195.04477594,
+      EUR = 1.06980384,
+      GBP = 0.93546943,
+      CAD = 1.72764065,
+      USD = 1.25025887,
+      NZD = 2.1577881,
+      CNY = 8.82853275,
     },
     HKD = {
       AUD = 0.19399706,
@@ -77,18 +77,18 @@ PeaversCurrencyData.CurrencyRates = {
       CNY = 0.0048112577,
     },
     JPY = {
-      AUD = 0.0096864379,
-      CHF = 0.0051747393,
-      HKD = 0.04993085,
-      TWD = 0.20010837,
-      KRW = 9.43257055,
+      AUD = 0.0096642173,
+      CHF = 0.0051270279,
+      HKD = 0.049867029,
+      TWD = 0.20035629,
+      KRW = 9.44142622,
       JPY = 1,
-      EUR = 0.005510466,
-      GBP = 0.0048138395,
-      CAD = 0.0088886197,
-      USD = 0.0064180975,
-      NZD = 0.011113381,
-      CNY = 0.045382528,
+      EUR = 0.0054849141,
+      GBP = 0.0047961778,
+      CAD = 0.0088576618,
+      USD = 0.0064101121,
+      NZD = 0.01106304,
+      CNY = 0.045264133,
     },
     EUR = {
       AUD = 1.75782555,
@@ -177,7 +177,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    CHF = "Fr",
     KRW = "₩",
     CAD = "C$",
     USD = "$",
@@ -189,5 +188,6 @@ PeaversCurrencyData.CurrencyRates = {
     EUR = "€",
     TWD = "NT$",
     HKD = "HK$",
+    CHF = "Fr",
   }
 }

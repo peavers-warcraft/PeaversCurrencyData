@@ -3,7 +3,7 @@
 ## Title: |cff3abdf7Peavers|rCurrencyData
 ## Notes: Real-time currency exchange rates and WoW token prices
 ## Author: Peavers
-## Version: 1.0.4732
+## Version: 1.0.4733
 
 ## IconTexture: Interface\AddOns\PeaversCurrencyData\src\Media\Icon.tga
 ## Category-enUS: Peavers

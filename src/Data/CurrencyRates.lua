@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-01-17T20:44:37.804399629Z
+-- Last updated: 2026-01-17T23:44:38.332416645Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-01-17T20:44:37.804399629Z",
+  lastUpdated = "2026-01-17T23:44:38.332416645Z",
 
   rates = {
     AUD = {

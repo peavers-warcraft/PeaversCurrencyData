@@ -1,6 +1,9 @@
 name: Package and Release
+
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'
 
 permissions:
   contents: write
@@ -8,24 +11,7 @@ permissions:
 
 jobs:
   package-and-release:
-    runs-on: self-hosted
-    env:
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
-      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Fetch all tags
-        run: git fetch --tags
-
-      - name: Checkout tag
-        run: git checkout ${{ github.event.inputs.ref }}
-
-      - name: Package and release
-        uses: BigWigsMods/packager@v2
-        env:
-          CF_API_KEY: ${{ secrets.CF_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    uses: peavers-warcraft/workflow-templates/.github/workflows/packaging.yml@main
+    with:
+      use_self_hosted: false
+    secrets: inherit

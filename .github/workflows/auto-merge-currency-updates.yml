@@ -10,6 +10,10 @@ concurrency:
   group: auto-merge-${{ github.repository }}
   cancel-in-progress: false
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   auto-merge:
     uses: peavers-warcraft/workflow-templates/.github/workflows/auto-merge-pr.yml@main

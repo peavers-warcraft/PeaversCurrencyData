@@ -29,7 +29,7 @@ jobs:
     with:
       toc_file: PeaversCurrencyData.toc
       addon_name: PeaversCurrencyData
-      packaging_workflow: packaging.yml
+      packaging_workflow: package-and-release.yml
       git_user_name: Chris Turner
       git_user_email: peavers@gmail.com
       use_self_hosted: false

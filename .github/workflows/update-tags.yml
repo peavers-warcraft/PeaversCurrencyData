@@ -1,0 +1,36 @@
+name: Update Version and Tag
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      release_notes:
+        description: 'Release notes'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  update-version-and-tag:
+    uses: peavers-warcraft/workflow-templates/.github/workflows/release-on-schedule.yml@main
+    with:
+      toc_file: PeaversCurrencyData.toc
+      addon_name: PeaversCurrencyData
+      packaging_workflow: packaging.yml
+      git_user_name: Chris Turner
+      git_user_email: peavers@gmail.com
+      use_self_hosted: false
+    secrets: inherit

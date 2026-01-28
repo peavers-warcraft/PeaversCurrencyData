@@ -1,4 +1,4 @@
-name: Auto-merge Currency Updates
+name: Auto-merge
 
 on:
   pull_request:
@@ -6,17 +6,17 @@ on:
     branches:
       - master
 
-concurrency:
-  group: auto-merge-${{ github.repository }}
-  cancel-in-progress: false
-
 permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: auto-merge-${{ github.repository }}
+  cancel-in-progress: false
+
 jobs:
   auto-merge:
-    uses: peavers-warcraft/workflow-templates/.github/workflows/auto-merge-pr.yml@master
+    uses: peavers-warcraft/workflow-templates/.github/workflows/auto-merge.yml@master
     with:
       allowed_user: peavers
       use_self_hosted: false

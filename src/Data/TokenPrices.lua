@@ -1,36 +1,36 @@
 -- Auto-generated token price data
--- Last updated: 2026-03-12T16:12:46.465370961Z
+-- Last updated: 2026-03-12T19:12:47.508916809Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 
 -- WoW Token prices across regions
 PeaversCurrencyData.TokenPrices = {
-  lastUpdated = "2026-03-12T16:12:46.465370961Z",
+  lastUpdated = "2026-03-12T19:12:47.508916809Z",
 
   regions = {
     EU = {
-      goldPrice = 342298,  -- Gold cost of a token
+      goldPrice = 352214,  -- Gold cost of a token
       realPrice = 20,      -- EUR cost of a token
       currency = "EUR",
-      goldValue = 0.0000584286, -- EUR value of 1 gold
+      goldValue = 0.0000567837, -- EUR value of 1 gold
     },
     TW = {
-      goldPrice = 657336,  -- Gold cost of a token
+      goldPrice = 613875,  -- Gold cost of a token
       realPrice = 500,      -- TWD cost of a token
       currency = "TWD",
-      goldValue = 0.0007606460, -- TWD value of 1 gold
+      goldValue = 0.0008144981, -- TWD value of 1 gold
     },
     KR = {
-      goldPrice = 259100,  -- Gold cost of a token
+      goldPrice = 236693,  -- Gold cost of a token
       realPrice = 22000,      -- KRW cost of a token
       currency = "KRW",
-      goldValue = 0.0849093014, -- KRW value of 1 gold
+      goldValue = 0.0929474044, -- KRW value of 1 gold
     },
     US = {
-      goldPrice = 252280,  -- Gold cost of a token
+      goldPrice = 245893,  -- Gold cost of a token
       realPrice = 20,      -- USD cost of a token
       currency = "USD",
-      goldValue = 0.0000792770, -- USD value of 1 gold
+      goldValue = 0.0000813362, -- USD value of 1 gold
     },
   }
 }

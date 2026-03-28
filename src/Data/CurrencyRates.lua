@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-03-28T16:12:44.669114857Z
+-- Last updated: 2026-03-28T19:12:45.876153700Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-03-28T16:12:44.669114857Z",
+  lastUpdated = "2026-03-28T19:12:45.876153700Z",
 
   rates = {
     AUD = {
@@ -91,18 +91,18 @@ PeaversCurrencyData.CurrencyRates = {
       CNY = 0.043118476,
     },
     EUR = {
-      AUD = 1.67374384,
-      CHF = 0.91740816,
-      HKD = 9.03556591,
-      TWD = 36.87109793,
-      KRW = 1735.53162028,
-      JPY = 184.06392688,
+      AUD = 1.676973,
+      CHF = 0.921971,
+      HKD = 9.035924,
+      TWD = 36.998328,
+      KRW = 1741.130593,
+      JPY = 185.080568,
       EUR = 1,
-      GBP = 0.864849,
-      CAD = 1.59834037,
-      USD = 1.15392208,
-      NZD = 1.99991204,
-      CNY = 7.97741724,
+      GBP = 0.870276,
+      CAD = 1.604831,
+      USD = 1.154596,
+      NZD = 2.009741,
+      CNY = 7.980392,
     },
     GBP = {
       AUD = 1.92694387,
@@ -119,18 +119,18 @@ PeaversCurrencyData.CurrencyRates = {
       CNY = 9.16995528,
     },
     USD = {
-      AUD = 1.45048256,
-      CHF = 0.79503476,
-      HKD = 7.83030855,
-      TWD = 31.95284904,
-      KRW = 1504.02843908,
-      JPY = 159.5115741,
-      EUR = 0.86660964,
-      GBP = 0.74948649,
-      CAD = 1.38513718,
+      AUD = 1.45243271,
+      CHF = 0.7985226,
+      HKD = 7.82604825,
+      TWD = 32.04439302,
+      KRW = 1507.99984843,
+      JPY = 160.29898597,
+      EUR = 0.86610381,
+      GBP = 0.75374936,
+      CAD = 1.38995025,
       USD = 1,
-      NZD = 1.73314306,
-      CNY = 6.91330671,
+      NZD = 1.74064435,
+      CNY = 6.91184795,
     },
     CAD = {
       AUD = 1.04495302,
@@ -177,17 +177,17 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    CAD = "C$",
-    KRW = "₩",
-    CHF = "Fr",
-    HKD = "HK$",
-    TWD = "NT$",
-    EUR = "€",
-    JPY = "¥",
-    CNY = "¥",
-    AUD = "A$",
     NZD = "NZ$",
-    GBP = "£",
+    AUD = "A$",
+    CNY = "¥",
+    JPY = "¥",
+    EUR = "€",
+    TWD = "NT$",
+    HKD = "HK$",
+    CHF = "Fr",
+    KRW = "₩",
+    CAD = "C$",
     USD = "$",
+    GBP = "£",
   }
 }

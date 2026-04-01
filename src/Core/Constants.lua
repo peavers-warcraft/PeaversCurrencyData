@@ -48,7 +48,7 @@ Constants.SUFFIX_CURRENCIES = {
 -- Major currencies
 Constants.MAJOR_CURRENCIES = {
 	"USD", "EUR", "GBP", "JPY", "CAD", "AUD",
-    "CHF", "CNY", "HKD", "NZD", "KRW", "TWD"
+    "CHF", "CNY", "HKD", "NZD", "KRW", "TWD", "EGP"
 }
 
 -- Token real prices by region

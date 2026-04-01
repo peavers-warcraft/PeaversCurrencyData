@@ -6,7 +6,7 @@ A World of Warcraft addon providing real-time currency exchange rates and WoW to
 
 ## Features
 
-- Daily updated exchange rates for 12 major currencies
+- Daily updated exchange rates for 13 major currencies
 - WoW token price tracking across all regions (US, EU, KR, TW)
 - Gold to real-world currency conversion
 - Currency-to-currency conversion
@@ -34,7 +34,7 @@ Use `/pcd` or `/peaverscurrency` commands:
 
 ## Supported Currencies
 
-USD, EUR, GBP, JPY, CAD, AUD, CHF, CNY, HKD, NZD, KRW, TWD
+USD, EUR, GBP, JPY, CAD, AUD, CHF, CNY, HKD, NZD, KRW, TWD, EGP
 
 ## For Developers
 

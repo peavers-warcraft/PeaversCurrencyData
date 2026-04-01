@@ -17,6 +17,9 @@
 src\Generated\CurrencyRates.lua
 src\Generated\TokenPrices.lua
 
+src\Data\CurrencyRates.lua
+src\Data\TokenPrices.lua
+
 src\Core\Constants.lua
 src\Core\Utils.lua
 src\Core\Init.lua

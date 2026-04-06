@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-04-05T22:12:45.208650518Z
+-- Last updated: 2026-04-06T01:12:44.727716769Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-04-05T22:12:45.208650518Z",
+  lastUpdated = "2026-04-06T01:12:44.727716769Z",
 
   rates = {
     CHF = {

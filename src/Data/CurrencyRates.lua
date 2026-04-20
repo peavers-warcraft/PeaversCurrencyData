@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-04-20T07:12:45.605781246Z
+-- Last updated: 2026-04-20T10:12:43.932831628Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-04-20T07:12:45.605781246Z",
+  lastUpdated = "2026-04-20T10:12:43.932831628Z",
 
   rates = {
     CHF = {
@@ -37,34 +37,34 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.21691295,
     },
     TWD = {
-      CHF = 0.02482967,
-      HKD = 0.24901394,
+      CHF = 0.024846657,
+      HKD = 0.24867933,
       TWD = 1,
-      EUR = 0.026982026,
-      CAD = 0.04376857,
-      USD = 0.031765831,
-      CNY = 0.2165715,
-      EGP = 1.64814329,
-      AUD = 0.044272162,
-      KRW = 46.60175506,
-      JPY = 5.0390258,
-      GBP = 0.023488474,
-      NZD = 0.054014347,
+      EUR = 0.027002423,
+      CAD = 0.043489049,
+      USD = 0.031744993,
+      CNY = 0.21642944,
+      EGP = 1.65044808,
+      AUD = 0.04437408,
+      KRW = 46.83640652,
+      JPY = 5.04496217,
+      GBP = 0.023512981,
+      NZD = 0.054009517,
     },
     EUR = {
-      CHF = 0.92023,
-      HKD = 9.228882,
-      TWD = 37.061709,
+      CHF = 0.920164,
+      HKD = 9.209519,
+      TWD = 37.033714,
       EUR = 1,
-      CAD = 1.622138,
-      USD = 1.177296,
-      CNY = 8.02651,
-      EGP = 61.083007,
-      AUD = 1.640802,
-      KRW = 1727.140685,
-      JPY = 186.754908,
-      GBP = 0.870523,
-      NZD = 2.001864,
+      CAD = 1.610561,
+      USD = 1.175635,
+      CNY = 8.015186,
+      EGP = 61.122222,
+      AUD = 1.643337,
+      KRW = 1734.526084,
+      JPY = 186.833686,
+      GBP = 0.870773,
+      NZD = 2.000173,
     },
     USD = {
       CHF = 0.7816471,
@@ -204,8 +204,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    CHF = "Fr",
-    JPY = "¥",
     NZD = "NZ$",
     CNY = "¥",
     EUR = "€",
@@ -217,5 +215,7 @@ PeaversCurrencyData.CurrencyRates = {
     TWD = "NT$",
     EGP = "E£",
     GBP = "£",
+    CHF = "Fr",
+    JPY = "¥",
   }
 }

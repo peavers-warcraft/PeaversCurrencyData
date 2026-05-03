@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-05-03T16:12:44.926925848Z
+-- Last updated: 2026-05-03T19:12:44.700446333Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-05-03T16:12:44.926925848Z",
+  lastUpdated = "2026-05-03T19:12:44.700446333Z",
 
   rates = {
     CHF = {
@@ -37,7 +37,7 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.21643484,
     },
     TWD = {
-      CHF = 0.024744725,
+      CHF = 0.024700154,
       HKD = 0.24771336,
       TWD = 1,
       EUR = 0.026963762,
@@ -45,11 +45,11 @@ PeaversCurrencyData.CurrencyRates = {
       USD = 0.031616063,
       CNY = 0.21588231,
       EGP = 1.69587659,
-      AUD = 0.043886812,
+      AUD = 0.043911188,
       KRW = 46.51733979,
       JPY = 4.96602917,
-      GBP = 0.023284772,
-      NZD = 0.053613801,
+      GBP = 0.023242817,
+      NZD = 0.053572924,
     },
     EUR = {
       CHF = 0.91605,
@@ -97,7 +97,7 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 1.24617339,
     },
     CNY = {
-      CHF = 0.11462136,
+      CHF = 0.1144149,
       HKD = 1.14744628,
       TWD = 4.63215343,
       EUR = 0.12490028,
@@ -105,11 +105,11 @@ PeaversCurrencyData.CurrencyRates = {
       USD = 0.14645045,
       CNY = 1,
       EGP = 7.85556057,
-      AUD = 0.20329045,
+      AUD = 0.20340336,
       KRW = 215.47545503,
       JPY = 23.00340903,
-      GBP = 0.10785864,
-      NZD = 0.24834735,
+      GBP = 0.10766429,
+      NZD = 0.248158,
     },
     EGP = {
       CHF = 0.014591112,
@@ -204,18 +204,18 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    USD = "$",
-    HKD = "HK$",
-    KRW = "₩",
-    TWD = "NT$",
-    EGP = "E£",
-    GBP = "£",
-    CHF = "Fr",
-    JPY = "¥",
-    NZD = "NZ$",
-    CNY = "¥",
     EUR = "€",
-    CAD = "C$",
+    CNY = "¥",
+    NZD = "NZ$",
+    JPY = "¥",
+    CHF = "Fr",
+    GBP = "£",
+    EGP = "E£",
+    TWD = "NT$",
+    KRW = "₩",
+    HKD = "HK$",
+    USD = "$",
     AUD = "A$",
+    CAD = "C$",
   }
 }

@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: PeaversCurrencyData
+  description: "A World of Warcraft addon providing real-time currency exchange rates and WoW token prices across all regions."
+  annotations:
+    github.com/project-slug: peavers-warcraft/PeaversCurrencyData
+spec:
+  type: library
+  lifecycle: production
+  owner: peavers-warcraft

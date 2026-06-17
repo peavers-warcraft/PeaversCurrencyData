@@ -1,4 +1,3 @@
-local _, addon = ...
 local PCD = PeaversCurrencyData
 
 local Constants = {}

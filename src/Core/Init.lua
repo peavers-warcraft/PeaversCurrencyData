@@ -1,4 +1,4 @@
-local addonName, addon = ...
+local addonName = ...
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 local PCD = PeaversCurrencyData
@@ -57,8 +57,8 @@ commandHandlers.info = function(args, useChat)
 end
 
 commandHandlers.convert = function(args, useChat)
-    local amount, from, to = strsplit(" ", args, 3)
-    amount = tonumber(amount)
+    local amountStr, from, to = strsplit(" ", args, 3)
+    local amount = tonumber(amountStr)
     from = PCD.Utils.ToUpper(from)
     to = PCD.Utils.ToUpper(to)
 
@@ -85,8 +85,8 @@ commandHandlers.goldvalue = function(args, useChat)
         return
     end
 
-    local amount, currency, region = strsplit(" ", args, 3)
-    amount = tonumber(amount)
+    local amountStr, currency, region = strsplit(" ", args, 3)
+    local amount = tonumber(amountStr)
 
     if not amount then
         OutputText("Invalid amount. Usage: /pcd goldvalue [amount] [currency] [region]", useChat)
@@ -118,8 +118,8 @@ commandHandlers.money = function(args, useChat)
         return
     end
 
-    local amount, currency, region = strsplit(" ", args, 3)
-    amount = tonumber(amount)
+    local amountStr, currency, region = strsplit(" ", args, 3)
+    local amount = tonumber(amountStr)
 
     if not amount then
         OutputText("Invalid amount. Usage: /pcd money [amount] [currency] [region]", useChat)

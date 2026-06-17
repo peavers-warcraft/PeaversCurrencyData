@@ -1,5 +1,3 @@
-local _, addon = ...
-
 PeaversCurrencyData = PeaversCurrencyData or {}
 local PCD = PeaversCurrencyData
 

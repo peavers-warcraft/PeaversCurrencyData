@@ -1,25 +1,25 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-06-28T16:12:44.816655849Z
+-- Last updated: 2026-06-28T19:12:44.487784332Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-06-28T16:12:44.816655849Z",
+  lastUpdated = "2026-06-28T19:12:44.487784332Z",
 
   rates = {
     CHF = {
       CHF = 1,
-      HKD = 9.68811087,
-      TWD = 39.3605785,
-      EUR = 1.08500316,
-      CAD = 1.75365692,
-      USD = 1.23542187,
-      CNY = 8.40185584,
-      EGP = 61.1835137,
-      AUD = 1.79215272,
-      KRW = 1897.238903,
-      JPY = 199.83148645,
-      GBP = 0.93629115,
-      NZD = 2.18919473,
+      HKD = 9.68620905,
+      TWD = 39.35105797,
+      EUR = 1.08449315,
+      CAD = 1.75288512,
+      USD = 1.23513259,
+      CNY = 8.39761583,
+      EGP = 61.16961308,
+      AUD = 1.79173582,
+      KRW = 1896.80033794,
+      JPY = 199.78393205,
+      GBP = 0.93587971,
+      NZD = 2.19075421,
     },
     HKD = {
       CHF = 0.10323956,
@@ -187,26 +187,23 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 2.34085021,
     },
     NZD = {
-      CHF = 0.45678897,
-      HKD = 4.42542216,
-      TWD = 17.97947801,
-      EUR = 0.49561747,
-      CAD = 0.80105114,
-      USD = 0.56432708,
-      CNY = 3.83787505,
-      EGP = 27.94795404,
-      AUD = 0.81863559,
-      KRW = 866.63779937,
-      JPY = 91.28081834,
-      GBP = 0.42768747,
+      CHF = 0.4564638,
+      HKD = 4.42140382,
+      TWD = 17.96233358,
+      EUR = 0.49503187,
+      CAD = 0.80012861,
+      USD = 0.56379332,
+      CNY = 3.83320766,
+      EGP = 27.92171423,
+      AUD = 0.81786254,
+      KRW = 865.82069616,
+      JPY = 91.19413344,
+      GBP = 0.42719521,
       NZD = 1,
     },
   },
 
   symbols = {
-    KRW = "₩",
-    HKD = "HK$",
-    USD = "$",
     AUD = "A$",
     CAD = "C$",
     EUR = "€",
@@ -217,5 +214,8 @@ PeaversCurrencyData.CurrencyRates = {
     GBP = "£",
     EGP = "E£",
     TWD = "NT$",
+    KRW = "₩",
+    HKD = "HK$",
+    USD = "$",
   }
 }

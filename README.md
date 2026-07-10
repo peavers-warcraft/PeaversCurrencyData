@@ -2,23 +2,19 @@
 
 A World of Warcraft addon providing real-time currency exchange rates and WoW token prices across all regions.
 
-**Website:** [peavers.io](https://peavers.io) | **Addon Backup:** [vault.peavers.io](https://vault.peavers.io) | **Issues:** [GitHub](https://github.com/peavers-warcraft/PeaversCurrencyData/issues)
-
 ## Features
 
+<!-- peavers:features -->
 - Daily updated exchange rates for 13 major currencies
 - WoW token price tracking across all regions (US, EU, KR, TW)
 - Gold to real-world currency conversion
 - Currency-to-currency conversion
 - Developer-friendly API for addon integration
-
-## Installation
-
-1. Download from [CurseForge](https://www.curseforge.com/wow/addons/peaverscurrencydata)
-2. Enable the addon on the character selection screen
+<!-- /peavers:features -->
 
 ## Usage
 
+<!-- peavers:usage -->
 Use `/pcd` or `/peaverscurrency` commands:
 
 | Command | Description |
@@ -31,7 +27,9 @@ Use `/pcd` or `/peaverscurrency` commands:
 | `/pcd list` | List all supported currencies |
 | `/pcd default [currency]` | Set your default currency |
 | `/pcd region [region]` | Set your default region |
+<!-- /peavers:usage -->
 
+<!-- peavers:custom -->
 ## Supported Currencies
 
 USD, EUR, GBP, JPY, CAD, AUD, CHF, CNY, HKD, NZD, KRW, TWD, EGP
@@ -49,3 +47,12 @@ local tokenData = PeaversCurrencyData:GetTokenData("US")
 
 - Currency exchange rates: [Fawaz Ahmed Currency API](https://github.com/fawazahmed0/currency-api)
 - WoW token prices: Official Blizzard API
+<!-- /peavers:custom -->
+
+## Installation
+
+This is a data library used by other Peavers addons and doesn't require direct user interaction. [PeaversUpdater](https://github.com/peavers-warcraft/PeaversUpdater/releases/latest) installs and updates it automatically alongside its parent addon, or download it directly from [CurseForge](https://www.curseforge.com/wow/addons/peaverscurrencydata).
+
+---
+
+*Part of the [Peavers](https://peavers.io) addon collection · [Report an issue](https://github.com/peavers-warcraft/PeaversCurrencyData/issues) · [Support development on Patreon](https://www.patreon.com/Peavers)*

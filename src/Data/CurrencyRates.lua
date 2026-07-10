@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-07-10T13:12:44.552147995Z
+-- Last updated: 2026-07-10T16:12:44.640705146Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-07-10T13:12:44.552147995Z",
+  lastUpdated = "2026-07-10T16:12:44.640705146Z",
 
   rates = {
     CHF = {
@@ -82,34 +82,34 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 1.74716985,
     },
     CAD = {
-      CHF = 0.56984841,
-      HKD = 5.53365048,
-      TWD = 22.66970895,
-      EUR = 0.6177843,
+      CHF = 0.56818411,
+      HKD = 5.54093239,
+      TWD = 22.68923428,
+      EUR = 0.61730321,
       CAD = 1,
-      USD = 0.705936,
-      CNY = 4.79943131,
-      EGP = 35.02935886,
-      AUD = 1.01779307,
-      KRW = 1063.14331808,
-      JPY = 114.6798183,
-      GBP = 0.52691567,
-      NZD = 1.23339009,
+      USD = 0.70696024,
+      CNY = 4.7934135,
+      EGP = 35.0761237,
+      AUD = 1.01548332,
+      KRW = 1066.82985789,
+      JPY = 114.15036343,
+      GBP = 0.52593265,
+      NZD = 1.22188474,
     },
     CNY = {
-      CHF = 0.11873249,
-      HKD = 1.15298045,
-      TWD = 4.72341565,
-      EUR = 0.12872031,
-      CAD = 0.20835802,
-      USD = 0.14708743,
+      CHF = 0.11853434,
+      HKD = 1.15594709,
+      TWD = 4.73341894,
+      EUR = 0.12878155,
+      CAD = 0.2086196,
+      USD = 0.14748576,
       CNY = 1,
-      EGP = 7.29864782,
-      AUD = 0.21206535,
-      KRW = 221.51443562,
-      JPY = 23.89445975,
-      GBP = 0.10978711,
-      NZD = 0.25698672,
+      EGP = 7.31756684,
+      AUD = 0.21184972,
+      KRW = 222.56161656,
+      JPY = 23.81400298,
+      GBP = 0.10971986,
+      NZD = 0.2549091,
     },
     EGP = {
       CHF = 0.016267737,
@@ -204,7 +204,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    AUD = "A$",
     USD = "$",
     HKD = "HK$",
     KRW = "₩",
@@ -217,5 +216,6 @@ PeaversCurrencyData.CurrencyRates = {
     CNY = "¥",
     EUR = "€",
     CAD = "C$",
+    AUD = "A$",
   }
 }

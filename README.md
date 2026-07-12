@@ -1,5 +1,7 @@
 # PeaversCurrencyData
 
+[![AddonSentry](https://api.addonsentry.io/api/public/repos/peavers-warcraft/PeaversCurrencyData/badge.svg)](https://addonsentry.io/dashboard/peavers-warcraft/PeaversCurrencyData)
+
 A World of Warcraft addon providing real-time currency exchange rates and WoW token prices across all regions.
 
 ## Features

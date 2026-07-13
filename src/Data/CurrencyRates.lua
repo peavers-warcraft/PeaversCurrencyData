@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-07-13T10:12:45.969070233Z
+-- Last updated: 2026-07-13T13:12:44.030921008Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-07-13T10:12:45.969070233Z",
+  lastUpdated = "2026-07-13T13:12:44.030921008Z",
 
   rates = {
     CHF = {
@@ -172,19 +172,19 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.010710286,
     },
     GBP = {
-      CHF = 1.08365587,
-      HKD = 10.48587273,
-      TWD = 42.89375883,
-      EUR = 1.17383969,
-      CAD = 1.89498489,
-      USD = 1.33772499,
-      CNY = 9.07497407,
-      EGP = 66.62152649,
-      AUD = 1.93068184,
-      KRW = 2017.59847031,
-      JPY = 216.82749363,
+      CHF = 1.08331792,
+      HKD = 10.50652871,
+      TWD = 42.99189112,
+      EUR = 1.17389446,
+      CAD = 1.89737383,
+      USD = 1.34021028,
+      CNY = 9.08251115,
+      EGP = 66.6056552,
+      AUD = 1.92752528,
+      KRW = 2008.64443443,
+      JPY = 216.7523332,
       GBP = 1,
-      NZD = 2.32228443,
+      NZD = 2.32568136,
     },
     NZD = {
       CHF = 0.46580668,
@@ -204,11 +204,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    USD = "$",
-    HKD = "HK$",
-    KRW = "₩",
-    TWD = "NT$",
-    EGP = "E£",
     GBP = "£",
     CHF = "Fr",
     JPY = "¥",
@@ -217,5 +212,10 @@ PeaversCurrencyData.CurrencyRates = {
     EUR = "€",
     CAD = "C$",
     AUD = "A$",
+    USD = "$",
+    HKD = "HK$",
+    KRW = "₩",
+    TWD = "NT$",
+    EGP = "E£",
   }
 }

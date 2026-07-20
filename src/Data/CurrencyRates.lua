@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-07-20T16:12:46.937438678Z
+-- Last updated: 2026-07-20T19:12:44.350183126Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-07-20T16:12:46.937438678Z",
+  lastUpdated = "2026-07-20T19:12:44.350183126Z",
 
   rates = {
     CHF = {
@@ -67,19 +67,19 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 1.95769949,
     },
     USD = {
-      CHF = 0.80780156,
-      HKD = 7.84012872,
-      TWD = 32.41968216,
-      EUR = 0.87428199,
-      CAD = 1.40212386,
+      CHF = 0.80744645,
+      HKD = 7.84010771,
+      TWD = 32.40061288,
+      EUR = 0.8740398,
+      CAD = 1.40085621,
       USD = 1,
-      CNY = 6.77861721,
-      EGP = 50.54435367,
-      AUD = 1.43236325,
-      KRW = 1487.63227526,
-      JPY = 162.40900745,
-      GBP = 0.74334722,
-      NZD = 1.71158142,
+      CNY = 6.77213585,
+      EGP = 50.60752605,
+      AUD = 1.43000213,
+      KRW = 1481.92397929,
+      JPY = 162.37081235,
+      GBP = 0.74295123,
+      NZD = 1.7074064,
     },
     CAD = {
       CHF = 0.57639496,
@@ -172,19 +172,19 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.010515476,
     },
     GBP = {
-      CHF = 1.08670827,
-      HKD = 10.54706139,
-      TWD = 43.61310767,
-      EUR = 1.17614215,
-      CAD = 1.88623005,
-      USD = 1.34526636,
-      CNY = 9.11904566,
-      EGP = 67.99561847,
-      AUD = 1.92691009,
-      KRW = 2001.26164952,
-      JPY = 218.48337358,
+      CHF = 1.08680949,
+      HKD = 10.55265455,
+      TWD = 43.61068591,
+      EUR = 1.17644304,
+      CAD = 1.88552915,
+      USD = 1.34598336,
+      CNY = 9.11518219,
+      EGP = 68.11688815,
+      AUD = 1.92475908,
+      KRW = 1994.64502254,
+      JPY = 218.54841218,
       GBP = 1,
-      NZD = 2.30253289,
+      NZD = 2.29814061,
     },
     NZD = {
       CHF = 0.47290818,
@@ -204,6 +204,7 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
+    AUD = "A$",
     CAD = "C$",
     EUR = "€",
     CNY = "¥",
@@ -216,6 +217,5 @@ PeaversCurrencyData.CurrencyRates = {
     KRW = "₩",
     HKD = "HK$",
     USD = "$",
-    AUD = "A$",
   }
 }

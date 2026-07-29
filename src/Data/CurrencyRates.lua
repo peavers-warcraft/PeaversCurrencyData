@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-07-29T13:12:45.303460225Z
+-- Last updated: 2026-07-29T16:12:45.036685673Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-07-29T13:12:45.303460225Z",
+  lastUpdated = "2026-07-29T16:12:45.036685673Z",
 
   rates = {
     CHF = {
@@ -52,34 +52,34 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.053298094,
     },
     EUR = {
-      CHF = 0.93244292,
-      HKD = 8.93773486,
-      TWD = 36.98728475,
+      CHF = 0.93137091,
+      HKD = 8.92295858,
+      TWD = 36.87876971,
       EUR = 1,
-      CAD = 1.60633359,
-      USD = 1.13964137,
-      CNY = 7.71766274,
-      EGP = 57.55969407,
-      AUD = 1.63971627,
-      KRW = 1654.85220338,
-      JPY = 186.55897924,
-      GBP = 0.85710349,
-      NZD = 1.97135179,
+      CAD = 1.60627087,
+      USD = 1.13786499,
+      CNY = 7.70081433,
+      EGP = 57.71392569,
+      AUD = 1.62675675,
+      KRW = 1665.60174408,
+      JPY = 186.27139337,
+      GBP = 0.85555447,
+      NZD = 1.97090565,
     },
     USD = {
-      CHF = 0.81818978,
-      HKD = 7.84258549,
-      TWD = 32.45519668,
-      EUR = 0.87746902,
-      CAD = 1.40950797,
+      CHF = 0.81852497,
+      HKD = 7.84184295,
+      TWD = 32.41049676,
+      EUR = 0.87883888,
+      CAD = 1.4116533,
       USD = 1,
-      CNY = 6.77201,
-      EGP = 50.50684863,
-      AUD = 1.43880024,
-      KRW = 1452.08154925,
-      JPY = 163.6997256,
-      GBP = 0.75208176,
-      NZD = 1.72980013,
+      CNY = 6.76777506,
+      EGP = 50.72124196,
+      AUD = 1.42965709,
+      KRW = 1463.79557545,
+      JPY = 163.70254319,
+      GBP = 0.75189453,
+      NZD = 1.73210852,
     },
     CAD = {
       CHF = 0.580479,
@@ -204,7 +204,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    JPY = "¥",
     CHF = "Fr",
     GBP = "£",
     EGP = "E£",
@@ -217,5 +216,6 @@ PeaversCurrencyData.CurrencyRates = {
     EUR = "€",
     CNY = "¥",
     NZD = "NZ$",
+    JPY = "¥",
   }
 }

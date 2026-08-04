@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-08-04T07:12:44.126012499Z
+-- Last updated: 2026-08-04T10:12:44.312740676Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-08-04T07:12:44.126012499Z",
+  lastUpdated = "2026-08-04T10:12:44.312740676Z",
 
   rates = {
     CHF = {
@@ -157,19 +157,19 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.0011869982,
     },
     JPY = {
-      CHF = 0.0051684005,
-      HKD = 0.050099931,
-      TWD = 0.20659819,
-      EUR = 0.0055406898,
-      CAD = 0.0089644625,
-      USD = 0.0063879841,
-      CNY = 0.043139219,
-      EGP = 0.3287662,
-      AUD = 0.009086858,
-      KRW = 9.14494651,
+      CHF = 0.0051389726,
+      HKD = 0.049743266,
+      TWD = 0.20532428,
+      EUR = 0.0055105041,
+      CAD = 0.0089083157,
+      USD = 0.0063426362,
+      CNY = 0.0428603,
+      EGP = 0.31794994,
+      AUD = 0.0090393017,
+      KRW = 9.06017854,
       JPY = 1,
-      GBP = 0.0047431212,
-      NZD = 0.010855035,
+      GBP = 0.0047233001,
+      NZD = 0.010812431,
     },
     GBP = {
       CHF = 1.08800468,
@@ -187,24 +187,23 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 2.28916881,
     },
     NZD = {
-      CHF = 0.47612933,
-      HKD = 4.61536341,
-      TWD = 19.03247552,
-      EUR = 0.5104258,
-      CAD = 0.82583452,
-      USD = 0.58848122,
-      CNY = 3.97412068,
-      EGP = 30.28697761,
-      AUD = 0.83710998,
-      KRW = 842.46127527,
-      JPY = 92.12314961,
-      GBP = 0.43695127,
+      CHF = 0.47528373,
+      HKD = 4.60056254,
+      TWD = 18.98964933,
+      EUR = 0.50964524,
+      CAD = 0.8238957,
+      USD = 0.58660592,
+      CNY = 3.96398358,
+      EGP = 29.40596186,
+      AUD = 0.83601009,
+      KRW = 837.9409134,
+      JPY = 92.48613694,
+      GBP = 0.43683978,
       NZD = 1,
     },
   },
 
   symbols = {
-    EUR = "€",
     CAD = "C$",
     AUD = "A$",
     USD = "$",
@@ -217,5 +216,6 @@ PeaversCurrencyData.CurrencyRates = {
     JPY = "¥",
     NZD = "NZ$",
     CNY = "¥",
+    EUR = "€",
   }
 }

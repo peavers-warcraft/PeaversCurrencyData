@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-09-02T19:12:44.200953882Z
+-- Last updated: 2026-09-02T22:12:43.964223686Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-09-02T19:12:44.200953882Z",
+  lastUpdated = "2026-09-02T22:12:43.964223686Z",
 
   rates = {
     CHF = {
@@ -37,19 +37,19 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.21598982,
     },
     TWD = {
-      CHF = 0.025596153,
-      HKD = 0.24772701,
+      CHF = 0.025563623,
+      HKD = 0.2465878,
       TWD = 1,
-      EUR = 0.02723446,
-      CAD = 0.043831672,
-      USD = 0.031601087,
-      CNY = 0.21237412,
-      EGP = 1.60914003,
-      AUD = 0.044094421,
-      KRW = 43.38629782,
-      JPY = 5.05137993,
-      GBP = 0.023341122,
-      NZD = 0.053506511,
+      EUR = 0.02715929,
+      CAD = 0.043764043,
+      USD = 0.031447688,
+      CNY = 0.21140337,
+      EGP = 1.60108022,
+      AUD = 0.044050721,
+      KRW = 43.09486085,
+      JPY = 5.03885839,
+      GBP = 0.023291298,
+      NZD = 0.053849725,
     },
     EUR = {
       CHF = 0.94124784,
@@ -187,23 +187,26 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 2.31201042,
     },
     NZD = {
-      CHF = 0.47837454,
-      HKD = 4.62984787,
-      TWD = 18.68931412,
-      EUR = 0.50899339,
-      CAD = 0.81918388,
-      USD = 0.59060264,
-      CNY = 3.96912663,
-      EGP = 30.07372341,
-      AUD = 0.82409448,
-      KRW = 810.86014842,
-      JPY = 94.40682616,
-      GBP = 0.43622955,
+      CHF = 0.47472152,
+      HKD = 4.57918398,
+      TWD = 18.57019709,
+      EUR = 0.50435337,
+      CAD = 0.8127069,
+      USD = 0.58398976,
+      CNY = 3.92580227,
+      EGP = 29.73237531,
+      AUD = 0.81803057,
+      KRW = 800.28005955,
+      JPY = 93.57259348,
+      GBP = 0.432524,
       NZD = 1,
     },
   },
 
   symbols = {
+    TWD = "NT$",
+    EGP = "E£",
+    GBP = "£",
     CHF = "Fr",
     JPY = "¥",
     NZD = "NZ$",
@@ -214,8 +217,5 @@ PeaversCurrencyData.CurrencyRates = {
     USD = "$",
     HKD = "HK$",
     KRW = "₩",
-    TWD = "NT$",
-    EGP = "E£",
-    GBP = "£",
   }
 }

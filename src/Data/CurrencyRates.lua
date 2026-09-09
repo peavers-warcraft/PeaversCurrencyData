@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-09-09T04:12:44.232353213Z
+-- Last updated: 2026-09-09T07:12:45.253986537Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-09-09T04:12:44.232353213Z",
+  lastUpdated = "2026-09-09T07:12:45.253986537Z",
 
   rates = {
     CHF = {
@@ -127,34 +127,34 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.033530182,
     },
     AUD = {
-      CHF = 0.58402074,
-      HKD = 5.65715548,
-      TWD = 22.71130539,
-      EUR = 0.62068136,
-      CAD = 0.99604114,
-      USD = 0.72152916,
-      CNY = 4.84199793,
-      EGP = 36.74277661,
+      CHF = 0.58435556,
+      HKD = 5.66523965,
+      TWD = 22.74062849,
+      EUR = 0.62108957,
+      CAD = 0.99509443,
+      USD = 0.72239881,
+      CNY = 4.84567812,
+      EGP = 36.85885397,
       AUD = 1,
-      KRW = 966.90253979,
-      JPY = 110.62918297,
-      GBP = 0.53296103,
-      NZD = 1.231992,
+      KRW = 966.78131622,
+      JPY = 110.8264144,
+      GBP = 0.53327012,
+      NZD = 1.23361297,
     },
     KRW = {
-      CHF = 0.00060401201,
-      HKD = 0.0058508022,
-      TWD = 0.023488722,
-      EUR = 0.00064192753,
-      CAD = 0.001030136,
-      USD = 0.00074622739,
-      CNY = 0.0050077415,
-      EGP = 0.038000497,
-      AUD = 0.0010342304,
+      CHF = 0.00060443407,
+      HKD = 0.0058598977,
+      TWD = 0.023521998,
+      EUR = 0.00064243026,
+      CAD = 0.001029286,
+      USD = 0.00074722049,
+      CNY = 0.005012176,
+      EGP = 0.038125327,
+      AUD = 0.0010343601,
       KRW = 1,
-      JPY = 0.11441606,
-      GBP = 0.0005512045,
-      NZD = 0.0012741636,
+      JPY = 0.11463442,
+      GBP = 0.00055159333,
+      NZD = 0.001276,
     },
     JPY = {
       CHF = 0.0052790839,
@@ -204,7 +204,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    AUD = "A$",
     CAD = "C$",
     EUR = "€",
     CNY = "¥",
@@ -217,5 +216,6 @@ PeaversCurrencyData.CurrencyRates = {
     KRW = "₩",
     HKD = "HK$",
     USD = "$",
+    AUD = "A$",
   }
 }

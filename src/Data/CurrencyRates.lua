@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-09-12T07:12:44.852237976Z
+-- Last updated: 2026-09-12T10:12:44.051785343Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-09-12T07:12:44.852237976Z",
+  lastUpdated = "2026-09-12T10:12:44.051785343Z",
 
   rates = {
     CHF = {
@@ -22,19 +22,19 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 2.11043742,
     },
     HKD = {
-      CHF = 0.10379093,
+      CHF = 0.10410873,
       HKD = 1,
-      TWD = 4.03552739,
-      EUR = 0.10992142,
-      CAD = 0.176542,
-      USD = 0.12752474,
-      CNY = 0.85587261,
-      EGP = 6.54971279,
-      AUD = 0.17823345,
-      KRW = 171.52756406,
-      JPY = 19.68831578,
-      GBP = 0.09446674,
-      NZD = 0.21904426,
+      TWD = 4.02711481,
+      EUR = 0.10993434,
+      CAD = 0.17685972,
+      USD = 0.1275053,
+      CNY = 0.85512696,
+      EGP = 6.55061571,
+      AUD = 0.17781019,
+      KRW = 170.9743714,
+      JPY = 19.58431906,
+      GBP = 0.094252853,
+      NZD = 0.21931594,
     },
     TWD = {
       CHF = 0.025719297,
@@ -187,23 +187,26 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 2.31874479,
     },
     NZD = {
-      CHF = 0.47383542,
-      HKD = 4.56528737,
-      TWD = 18.42334222,
-      EUR = 0.50182286,
-      CAD = 0.80596495,
-      USD = 0.5821871,
-      CNY = 3.90730443,
-      EGP = 29.90132108,
-      AUD = 0.81368694,
-      KRW = 783.07262205,
-      JPY = 89.88281941,
-      GBP = 0.43126782,
+      CHF = 0.4746975,
+      HKD = 4.55963209,
+      TWD = 18.36216193,
+      EUR = 0.50126015,
+      CAD = 0.80641525,
+      USD = 0.58137728,
+      CNY = 3.89906433,
+      EGP = 29.8683976,
+      AUD = 0.81074904,
+      KRW = 779.58023094,
+      JPY = 89.29728971,
+      GBP = 0.42975833,
       NZD = 1,
     },
   },
 
   symbols = {
+    NZD = "NZ$",
+    CNY = "¥",
+    EUR = "€",
     CAD = "C$",
     AUD = "A$",
     USD = "$",
@@ -214,8 +217,5 @@ PeaversCurrencyData.CurrencyRates = {
     GBP = "£",
     CHF = "Fr",
     JPY = "¥",
-    NZD = "NZ$",
-    CNY = "¥",
-    EUR = "€",
   }
 }

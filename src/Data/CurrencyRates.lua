@@ -1,25 +1,25 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-09-16T22:12:44.480806135Z
+-- Last updated: 2026-09-17T01:12:44.881628271Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-09-16T22:12:44.480806135Z",
+  lastUpdated = "2026-09-17T01:12:44.881628271Z",
 
   rates = {
     CHF = {
       CHF = 1,
-      HKD = 9.58577949,
-      TWD = 38.84616629,
-      EUR = 1.05939615,
-      CAD = 1.70048871,
-      USD = 1.22208539,
-      CNY = 8.20093181,
-      EGP = 63.18870412,
-      AUD = 1.71647575,
-      KRW = 1654.58417162,
-      JPY = 189.05993073,
-      GBP = 0.90629404,
-      NZD = 2.12362752,
+      HKD = 9.58158598,
+      TWD = 38.79029108,
+      EUR = 1.05824142,
+      CAD = 1.70169431,
+      USD = 1.22147955,
+      CNY = 8.19634685,
+      EGP = 63.39622538,
+      AUD = 1.71373318,
+      KRW = 1667.10298244,
+      JPY = 189.77022699,
+      GBP = 0.90608779,
+      NZD = 2.12739591,
     },
     HKD = {
       CHF = 0.10436686,
@@ -52,19 +52,19 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.054843515,
     },
     EUR = {
-      CHF = 0.94393395,
-      HKD = 9.04834273,
-      TWD = 36.66821531,
+      CHF = 0.94496396,
+      HKD = 9.0542534,
+      TWD = 36.65542694,
       EUR = 1,
-      CAD = 1.60514903,
-      USD = 1.15356789,
-      CNY = 7.74113798,
-      EGP = 59.64596327,
-      AUD = 1.62023974,
-      KRW = 1561.81817784,
-      JPY = 178.46008778,
-      GBP = 0.85548172,
-      NZD = 2.00456412,
+      CAD = 1.60803979,
+      USD = 1.15425415,
+      CNY = 7.74525235,
+      EGP = 59.90714797,
+      AUD = 1.61941609,
+      KRW = 1575.3522304,
+      JPY = 179.32602455,
+      GBP = 0.8562203,
+      NZD = 2.01031246,
     },
     USD = {
       CHF = 0.81867928,
@@ -204,9 +204,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    EGP = "E£",
-    TWD = "NT$",
-    KRW = "₩",
     HKD = "HK$",
     USD = "$",
     AUD = "A$",
@@ -217,5 +214,8 @@ PeaversCurrencyData.CurrencyRates = {
     JPY = "¥",
     CHF = "Fr",
     GBP = "£",
+    EGP = "E£",
+    TWD = "NT$",
+    KRW = "₩",
   }
 }

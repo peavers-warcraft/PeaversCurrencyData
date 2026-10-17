@@ -1,25 +1,25 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-10-16T22:12:44.453873738Z
+-- Last updated: 2026-10-17T01:12:45.397097834Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-10-16T22:12:44.453873738Z",
+  lastUpdated = "2026-10-17T01:12:45.397097834Z",
 
   rates = {
     CHF = {
       CHF = 1,
-      HKD = 9.47020213,
-      TWD = 39.04165828,
-      EUR = 1.07508093,
-      CAD = 1.71372568,
-      USD = 1.20678911,
-      CNY = 8.07649185,
-      EGP = 64.08264488,
-      AUD = 1.73596764,
-      KRW = 1627.05514185,
-      JPY = 190.32981385,
-      GBP = 0.91090636,
-      NZD = 2.14520746,
+      HKD = 9.49473242,
+      TWD = 39.25506528,
+      EUR = 1.07661843,
+      CAD = 1.7148282,
+      USD = 1.20986027,
+      CNY = 8.09331197,
+      EGP = 64.65161596,
+      AUD = 1.74159649,
+      KRW = 1625.0213848,
+      JPY = 191.02038271,
+      GBP = 0.90946841,
+      NZD = 2.13992752,
     },
     HKD = {
       CHF = 0.10532156,
@@ -52,19 +52,19 @@ PeaversCurrencyData.CurrencyRates = {
       NZD = 0.054513411,
     },
     EUR = {
-      CHF = 0.93016254,
-      HKD = 8.80882722,
-      TWD = 36.31508785,
+      CHF = 0.92883419,
+      HKD = 8.81903206,
+      TWD = 36.46144663,
       EUR = 1,
-      CAD = 1.59404343,
-      USD = 1.12251002,
-      CNY = 7.51245014,
-      EGP = 59.60727543,
-      AUD = 1.61473206,
-      KRW = 1513.42573593,
-      JPY = 177.0376622,
-      GBP = 0.84729097,
-      NZD = 1.99539161,
+      CAD = 1.59279106,
+      USD = 1.12375958,
+      CNY = 7.51734484,
+      EGP = 60.05063112,
+      AUD = 1.61765436,
+      KRW = 1509.37541601,
+      JPY = 177.42626178,
+      GBP = 0.84474535,
+      NZD = 1.98763784,
     },
     USD = {
       CHF = 0.82654173,
@@ -204,6 +204,8 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
+    CAD = "C$",
+    AUD = "A$",
     USD = "$",
     HKD = "HK$",
     KRW = "₩",
@@ -215,7 +217,5 @@ PeaversCurrencyData.CurrencyRates = {
     NZD = "NZ$",
     CNY = "¥",
     EUR = "€",
-    CAD = "C$",
-    AUD = "A$",
   }
 }

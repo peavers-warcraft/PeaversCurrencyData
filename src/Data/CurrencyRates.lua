@@ -1,9 +1,9 @@
 -- Auto-generated currency exchange rates
--- Last updated: 2026-11-02T01:12:45.457050898Z
+-- Last updated: 2026-11-02T04:12:44.551386402Z
 
 PeaversCurrencyData = PeaversCurrencyData or {}
 PeaversCurrencyData.CurrencyRates = {
-  lastUpdated = "2026-11-02T01:12:45.457050898Z",
+  lastUpdated = "2026-11-02T04:12:44.551386402Z",
 
   rates = {
     CHF = {
@@ -204,8 +204,6 @@ PeaversCurrencyData.CurrencyRates = {
   },
 
   symbols = {
-    NZD = "NZ$",
-    CNY = "¥",
     EUR = "€",
     CAD = "C$",
     AUD = "A$",
@@ -217,5 +215,7 @@ PeaversCurrencyData.CurrencyRates = {
     GBP = "£",
     CHF = "Fr",
     JPY = "¥",
+    NZD = "NZ$",
+    CNY = "¥",
   }
 }
